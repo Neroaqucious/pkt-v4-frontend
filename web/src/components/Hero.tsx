@@ -152,9 +152,10 @@ export default function Hero() {
                     alt=""
                     fill
                     sizes="(max-width: 1024px) 50vw, 25vw"
-                    className={`object-cover transition-opacity duration-700 ${
+                    className={`object-cover transition-opacity duration-500 ${
                       sIdx === setIdx ? "opacity-100" : "opacity-0"
                     }`}
+                    style={{ transitionDelay: `${tile * 320}ms` }}
                     priority={sIdx === 0 && tile === 0}
                   />
                 ))}
