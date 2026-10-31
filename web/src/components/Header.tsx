@@ -1,54 +1,62 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import LanguageSwitch from "./LanguageSwitch";
 
-const NAV = ["home", "courses", "sending", "news", "contact"] as const;
+const NAV = [
+  { key: "home", href: "/" },
+  { key: "about", href: "/about" },
+  { key: "services", href: "/services" },
+  { key: "news", href: "/news" },
+  { key: "gallery", href: "/gallery" },
+  { key: "contact", href: "/contact" },
+] as const;
 
 export default function Header() {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
 
-  const links = NAV.map((k) => (
-    <a
-      key={k}
-      href={k === "home" ? "/" : `#${k}`}
+  const links = NAV.map((item) => (
+    <Link
+      key={item.key}
+      href={item.href}
       onClick={() => setOpen(false)}
       className="text-sm font-semibold text-ink transition-colors hover:text-brand"
     >
-      {t(`nav.${k}`)}
-    </a>
+      {t(`nav.${item.key}`)}
+    </Link>
   ));
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <a href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
             P
           </span>
           <span className="text-lg font-extrabold tracking-tight">
             PKT <span className="text-brand">MYANMAR</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">{links}</nav>
 
         <div className="hidden items-center gap-3 lg:flex">
           <LanguageSwitch />
-          <a
-            href="#login"
+          <Link
+            href="/login"
             className="text-sm font-semibold text-muted transition-colors hover:text-brand"
           >
             {t("nav.login")}
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/contact"
             className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-dark"
           >
             {t("nav.apply")}
-          </a>
+          </Link>
         </div>
 
         <button
@@ -79,12 +87,13 @@ export default function Header() {
           <div className="flex flex-col gap-4">
             {links}
             <LanguageSwitch />
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
               className="rounded-full bg-brand px-5 py-2.5 text-center text-sm font-bold text-white"
             >
               {t("nav.apply")}
-            </a>
+            </Link>
           </div>
         </div>
       )}
