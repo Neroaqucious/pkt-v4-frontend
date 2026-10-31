@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import StatCounter from "./StatCounter";
-import FlightScene from "./FlightScene";
+import FlightTrail from "./FlightTrail";
 import { IMG } from "@/lib/images";
 
 function Stat({
@@ -74,10 +74,11 @@ export default function Hero() {
       <div className="pointer-events-none absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-brand/10 blur-3xl" />
       <div className="dot-grid pointer-events-none absolute left-8 top-24 hidden h-40 w-40 opacity-40 lg:block" />
 
+      <FlightTrail className="pointer-events-none absolute inset-0 h-full w-full" />
+
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:px-8">
         {/* Left — text */}
         <div>
-          <FlightScene className="mb-2 h-24 w-full max-w-lg text-brand/45" />
           <p className="animate-fade-up font-ui text-sm font-bold uppercase tracking-[0.2em] text-brand">
             {t("hero.eyebrow")}
           </p>
