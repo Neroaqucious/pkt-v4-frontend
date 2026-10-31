@@ -34,9 +34,22 @@ const HERO_SETS = [
   [IMG.coding, IMG.team, IMG.travel, IMG.education, IMG.consultation],
 ];
 
+// ပုံတစ်ခုချင်း organic/asymmetric rounded shape (ထောင့်မတူ)
+const TILE_SHAPES = [
+  "rounded-tl-[3.5rem] rounded-tr-[1.25rem] rounded-bl-[1.25rem] rounded-br-[1.25rem]",
+  "rounded-tl-[1.25rem] rounded-tr-[1.25rem] rounded-bl-[1.25rem] rounded-br-[3.5rem]",
+  "rounded-tl-[1.25rem] rounded-tr-[1.25rem] rounded-bl-[3.5rem] rounded-br-[1.25rem]",
+  "rounded-tl-[1.25rem] rounded-tr-[3.5rem] rounded-bl-[1.25rem] rounded-br-[1.25rem]",
+  "rounded-tl-[3.5rem] rounded-tr-[1.25rem] rounded-bl-[1.25rem] rounded-br-[3.5rem]",
+];
+
 function HeroTile({ tile, setIdx }: { tile: number; setIdx: number }) {
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
+    <div
+      className={`relative aspect-[4/3] overflow-hidden shadow-md ${
+        TILE_SHAPES[tile % TILE_SHAPES.length]
+      }`}
+    >
       {HERO_SETS.map((set, sIdx) => (
         <Image
           key={sIdx}
