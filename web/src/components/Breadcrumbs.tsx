@@ -10,8 +10,8 @@ export default function Breadcrumbs({
 }) {
   const { t } = useI18n();
   return (
-    <nav aria-label="Breadcrumb" className="w-full bg-cream">
-      <ol className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-4 pb-2 pt-6 font-ui text-xs text-muted sm:px-6 lg:px-8">
+    <nav aria-label="Breadcrumb" className="mb-6">
+      <ol className="flex flex-wrap items-center gap-2 font-ui text-xs text-muted">
         <li>
           <Link href="/" className="transition-colors hover:text-brand">
             {t("nav.home")}
