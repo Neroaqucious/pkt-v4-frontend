@@ -9,7 +9,7 @@ import StatCounter from "./StatCounter";
 import { IMG } from "@/lib/images";
 import { news, newsCategoryLabel } from "@/lib/news";
 import { Squiggle } from "./Decor";
-import { SakuraBranch, MyanmarMap, JapanMap } from "./Decor";
+import { SakuraBranch } from "./Decor";
 
 function SectionHeading({
   title,
@@ -61,48 +61,43 @@ const JOURNEY_STEPS = [
 export function Journey() {
   const { t } = useI18n();
   return (
-    <section id="journey" className="relative w-full overflow-hidden bg-white">
-      {/* map watermarks: Myanmar (left) → Japan (right) */}
-      <MyanmarMap className="pointer-events-none absolute -left-4 top-1/2 h-[58%] w-auto -translate-y-1/2 text-brand/[0.07]" />
-      <JapanMap className="pointer-events-none absolute -right-4 top-1/2 h-[58%] w-auto -translate-y-1/2 text-gold/[0.15]" />
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <SectionHeading eyebrow="OUR JOURNEY" title={t("journey.title")} sub={t("journey.sub")} />
-        <div className="mt-12 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {JOURNEY_STEPS.map((s, i) => (
-            <Reveal key={s.k} delay={i * 100}>
-              <div className="group overflow-hidden rounded-2xl bg-white ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={s.img}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, 25vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  <span className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-brand text-sm font-bold text-white shadow">
-                    {String(s.k).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-2 p-4">
-                  <h3 className="text-base font-bold text-ink">
-                    {t(`journey.${s.k}.t`)}
-                  </h3>
-                  <span className="hidden text-lg leading-none text-brand transition-transform duration-300 group-hover:rotate-45 md:block">
-                    ＋
-                  </span>
-                </div>
-                <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
-                  <p className="px-4 pb-4 text-sm leading-relaxed text-muted">
-                    {t(`journey.${s.k}.d`)}
-                  </p>
-                </div>
+    <Section id="journey" tone="white">
+      <SectionHeading eyebrow="OUR JOURNEY" title={t("journey.title")} sub={t("journey.sub")} />
+      <div className="mt-12 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {JOURNEY_STEPS.map((s, i) => (
+          <Reveal key={s.k} delay={i * 100}>
+            <div className="group overflow-hidden rounded-2xl bg-white ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={s.img}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <span className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-brand text-sm font-bold text-white shadow">
+                  {String(s.k).padStart(2, "0")}
+                </span>
               </div>
-            </Reveal>
-          ))}
-        </div>
+              <div className="flex items-center justify-between gap-2 p-4">
+                <h3 className="text-base font-bold text-ink">
+                  {t(`journey.${s.k}.t`)}
+                </h3>
+                <span className="hidden text-lg leading-none text-brand transition-transform duration-300 group-hover:rotate-45 md:block">
+                  ＋
+                </span>
+              </div>
+              <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
+                <p className="px-4 pb-4 text-sm leading-relaxed text-muted">
+                  {t(`journey.${s.k}.d`)}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
