@@ -16,6 +16,7 @@ type PlaneCfg = {
   dotOpacity: number;
   durBase: number;
   durRange: number;
+  planeScale: number;
   start: { fx: number; fy: number };
 };
 
@@ -30,6 +31,7 @@ const PLANES: PlaneCfg[] = [
     dotOpacity: 0.5,
     durBase: 15,
     durRange: 5,
+    planeScale: 0.75,
     start: { fx: 0.5, fy: 0.5 },
   },
   {
@@ -41,6 +43,7 @@ const PLANES: PlaneCfg[] = [
     dotOpacity: 0.5,
     durBase: 17,
     durRange: 5,
+    planeScale: 1.35,
     start: { fx: 0.25, fy: 0.7 },
   },
   {
@@ -52,6 +55,7 @@ const PLANES: PlaneCfg[] = [
     dotOpacity: 0.45,
     durBase: 13,
     durRange: 4,
+    planeScale: 1.0,
     start: { fx: 0.75, fy: 0.3 },
   },
 ];
@@ -215,7 +219,9 @@ export default function FlightTrail({
             planeRefs.current[i] = el;
           }}
         >
-          <g transform="rotate(90) scale(1.45) translate(-12,-12)">
+          <g
+            transform={`rotate(90) scale(${(1.45 * p.planeScale).toFixed(2)}) translate(-12,-12)`}
+          >
             <path
               d={PLANE_PATH}
               fill={p.fill}

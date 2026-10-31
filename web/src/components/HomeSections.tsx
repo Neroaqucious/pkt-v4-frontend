@@ -110,34 +110,62 @@ const WHY_ITEMS = [
 export function WhyPkt() {
   const { t } = useI18n();
   return (
-    <section id="why" className="relative w-full overflow-hidden bg-cream">
-      {/* Japanese spiral-wave watermark background */}
+    <section id="why" className="relative w-full overflow-hidden bg-[#fdf6ea]">
+      {/* Japanese seigaiha + sakura watermark (orange/gold) */}
       <svg
         className="pointer-events-none absolute inset-0 h-full w-full"
         aria-hidden="true"
       >
         <defs>
           <pattern
-            id="why-wave"
-            width="120"
-            height="120"
+            id="why-jp"
+            width="160"
+            height="160"
             patternUnits="userSpaceOnUse"
           >
+            {/* seigaiha concentric arcs */}
             <g
               fill="none"
-              stroke="#d6ccc3"
-              strokeWidth="1.1"
+              stroke="#e2a25c"
+              strokeWidth="1.3"
               strokeLinecap="round"
-              opacity="0.5"
+              opacity="0.4"
             >
-              <g transform="translate(4 12)">
-                <path d="M60 50 C60 40 50 40 50 50 C50 63 67 63 67 50 C67 33 44 33 44 50 C44 72 76 72 76 50 C76 24 36 24 36 50" />
-                <path d="M60 50 C60 44 55 44 55 50 C55 58 65 58 65 50" />
-              </g>
+              <path d="M0 80 A80 80 0 0 1 160 80" />
+              <path d="M20 80 A60 60 0 0 1 140 80" />
+              <path d="M40 80 A40 40 0 0 1 120 80" />
+              <path d="M60 80 A20 20 0 0 1 100 80" />
+              <path d="M-80 160 A80 80 0 0 1 80 160" />
+              <path d="M-60 160 A60 60 0 0 1 60 160" />
+              <path d="M-40 160 A40 40 0 0 1 40 160" />
+              <path d="M-20 160 A20 20 0 0 1 20 160" />
+              <path d="M80 160 A80 80 0 0 1 240 160" />
+              <path d="M100 160 A60 60 0 0 1 220 160" />
+              <path d="M120 160 A40 40 0 0 1 200 160" />
+              <path d="M140 160 A20 20 0 0 1 180 160" />
             </g>
+            {/* sakura flowers */}
+            {[
+              [80, 80],
+              [0, 0],
+            ].map(([cx, cy], idx) => (
+              <g
+                key={idx}
+                transform={`translate(${cx} ${cy})`}
+                fill="#d97a2f"
+                opacity="0.4"
+              >
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(72)" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(144)" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(216)" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="2.5" fill="#fdf6ea" />
+              </g>
+            ))}
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#why-wave)" />
+        <rect width="100%" height="100%" fill="url(#why-jp)" />
       </svg>
 
       {/* top wave border (blends from previous white section) */}
