@@ -47,7 +47,7 @@ export default function PageHero({
       <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gold/25 blur-3xl" />
       <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         {breadcrumb && <Breadcrumbs items={breadcrumb} />}
         <div className="text-center">
           <p className="font-ui text-xs font-bold uppercase tracking-[0.3em] text-brand">
