@@ -120,18 +120,18 @@ export default function Hero() {
         <div className="relative">
           <Fuji className="pointer-events-none absolute -bottom-2 right-0 w-64 text-ink opacity-[0.06]" />
 
-          {/* floating icons near the slider */}
-          <div className="absolute -left-4 top-3 z-20 flex h-11 w-11 animate-floaty items-center justify-center rounded-2xl bg-white text-lg shadow-lg sm:h-12 sm:w-12">
+          {/* floating icons near the slider (no background) */}
+          <div className="absolute -left-4 top-3 z-20 select-none text-3xl drop-shadow-md animate-floaty sm:text-4xl">
             🎓
           </div>
           <div
-            className="absolute -right-4 top-1/3 z-20 flex h-11 w-11 animate-floaty-slow items-center justify-center rounded-2xl bg-white text-lg shadow-lg sm:h-12 sm:w-12"
+            className="absolute -right-4 top-1/3 z-20 select-none text-3xl drop-shadow-md animate-floaty-slow sm:text-4xl"
             style={{ animationDelay: "0.7s" }}
           >
             ✈️
           </div>
           <div
-            className="absolute -right-2 bottom-20 z-20 flex h-11 w-11 animate-floaty items-center justify-center rounded-2xl bg-white text-lg shadow-lg sm:h-12 sm:w-12"
+            className="absolute -right-2 bottom-20 z-20 select-none text-3xl drop-shadow-md animate-floaty sm:text-4xl"
             style={{ animationDelay: "1.3s" }}
           >
             🛂
