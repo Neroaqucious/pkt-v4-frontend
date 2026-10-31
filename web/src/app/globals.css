@@ -84,6 +84,19 @@ body {
   animation: floaty 3.8s ease-in-out infinite;
 }
 
+/* Airplane flight-path dashes */
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flight-dash {
+  animation: dashMove 1.4s linear infinite;
+}
+.flight-dash-slow {
+  animation: dashMove 2.2s linear infinite;
+}
+
 /* Seigaiha (ရေလှိုင်း) wave divider */
 .seigaiha {
   height: 24px;
@@ -117,6 +130,10 @@ body {
   }
   .animate-floaty,
   .animate-floaty-slow {
+    animation: none;
+  }
+  .flight-dash,
+  .flight-dash-slow {
     animation: none;
   }
   html {

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import StatCounter from "./StatCounter";
 import { Fuji } from "./Motifs";
+import { FlightPath } from "./Decor";
 import { IMG } from "@/lib/images";
 
 function Stat({
@@ -28,11 +29,32 @@ function Stat({
   );
 }
 
-// ၄ ပုံတစ်စု — စု တစ်ခုလုံး (၄ ပုံ) တစ်ချိန်တည်း ပြောင်းမည်
+// ၅ ပုံတစ်စု — ညာဘက်မှာ ၃ ပုံ + ၂ ပုံ (vertical masonry)
 const HERO_SETS = [
-  [IMG.fuji, IMG.students, IMG.torii, IMG.studyLaptop],
-  [IMG.inari, IMG.coding, IMG.team, IMG.travel],
+  [IMG.fuji, IMG.students, IMG.torii, IMG.studyLaptop, IMG.inari],
+  [IMG.coding, IMG.team, IMG.travel, IMG.education, IMG.consultation],
 ];
+
+function HeroTile({ tile, setIdx }: { tile: number; setIdx: number }) {
+  return (
+    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
+      {HERO_SETS.map((set, sIdx) => (
+        <Image
+          key={sIdx}
+          src={set[tile]}
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 50vw, 20vw"
+          className={`object-cover transition-opacity duration-500 ${
+            sIdx === setIdx ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: `${tile * 260}ms` }}
+          priority={sIdx === 0 && tile === 0}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function Hero() {
   const { t } = useI18n();
@@ -41,31 +63,31 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(
       () => setSetIdx((i) => (i + 1) % HERO_SETS.length),
-      4000,
+      4200,
     );
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-cream">
-      {/* background watermark */}
-      <div className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden">
-        <span className="font-display text-[24vw] font-extrabold uppercase leading-none tracking-tighter text-ink/[0.035]">
-          JAPAN
-        </span>
-      </div>
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-cream to-gold-tint">
+      {/* Mt. Fuji watermark */}
+      <Fuji className="pointer-events-none absolute -bottom-6 left-1/2 w-[85%] max-w-[820px] -translate-x-1/2 text-ink/[0.05]" />
 
       {/* soft blobs + dot grid */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold/25 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-brand/10 blur-3xl" />
       <div className="dot-grid pointer-events-none absolute left-8 top-24 hidden h-40 w-40 opacity-40 lg:block" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:px-8">
         {/* Left — text */}
         <div>
-          <p className="animate-fade-up font-ui text-sm font-bold uppercase tracking-[0.2em] text-brand">
-            {t("hero.eyebrow")}
-          </p>
+          <div className="flex items-start justify-between gap-4">
+            <p className="animate-fade-up font-ui text-sm font-bold uppercase tracking-[0.2em] text-brand">
+              {t("hero.eyebrow")}
+            </p>
+            <FlightPath className="hidden h-16 w-32 shrink-0 text-brand/50 sm:block" />
+          </div>
+
           <h1
             className="animate-fade-up mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl"
             style={{ animationDelay: "80ms" }}
@@ -116,10 +138,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — 4-image set carousel + floating icons */}
+        {/* Right — vertical masonry (3 + 2) with wave transition */}
         <div className="relative">
-          <Fuji className="pointer-events-none absolute -bottom-2 right-0 w-64 text-ink opacity-[0.06]" />
-
           {/* floating icons near the slider (no background) */}
           <div className="absolute -left-4 top-3 z-20 select-none text-3xl drop-shadow-md animate-floaty sm:text-4xl">
             🎓
@@ -131,36 +151,25 @@ export default function Hero() {
             ✈️
           </div>
           <div
-            className="absolute -right-2 bottom-20 z-20 select-none text-3xl drop-shadow-md animate-floaty sm:text-4xl"
+            className="absolute -right-2 bottom-24 z-20 select-none text-3xl drop-shadow-md animate-floaty sm:text-4xl"
             style={{ animationDelay: "1.3s" }}
           >
             🛂
           </div>
 
-          <div className="relative grid grid-cols-2 gap-3">
-            {[0, 1, 2, 3].map((tile) => (
-              <div
-                key={tile}
-                className={`relative h-40 overflow-hidden rounded-2xl shadow-md sm:h-48 ${
-                  tile === 1 ? "mt-6" : ""
-                } ${tile === 3 ? "-mt-6" : ""}`}
-              >
-                {HERO_SETS.map((set, sIdx) => (
-                  <Image
-                    key={sIdx}
-                    src={set[tile]}
-                    alt=""
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                    className={`object-cover transition-opacity duration-500 ${
-                      sIdx === setIdx ? "opacity-100" : "opacity-0"
-                    }`}
-                    style={{ transitionDelay: `${tile * 320}ms` }}
-                    priority={sIdx === 0 && tile === 0}
-                  />
-                ))}
-              </div>
-            ))}
+          <div className="flex gap-3">
+            {/* column A — 3 images */}
+            <div className="flex flex-1 flex-col gap-3">
+              {[0, 1, 2].map((tile) => (
+                <HeroTile key={tile} tile={tile} setIdx={setIdx} />
+              ))}
+            </div>
+            {/* column B — 2 images, offset down */}
+            <div className="flex flex-1 flex-col gap-3 pt-10">
+              {[3, 4].map((tile) => (
+                <HeroTile key={tile} tile={tile} setIdx={setIdx} />
+              ))}
+            </div>
           </div>
 
           {/* set indicator dots */}
@@ -171,7 +180,9 @@ export default function Hero() {
                 onClick={() => setSetIdx(i)}
                 aria-label={`Set ${i + 1}`}
                 className={`h-2 rounded-full transition-all ${
-                  i === setIdx ? "w-6 bg-brand" : "w-2 bg-ink/20 hover:bg-ink/40"
+                  i === setIdx
+                    ? "w-6 bg-brand"
+                    : "w-2 bg-ink/20 hover:bg-ink/40"
                 }`}
               />
             ))}

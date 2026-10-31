@@ -34,3 +34,31 @@ export function Blob({
     </svg>
   );
 }
+
+export function FlightPath({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 170 84" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M8 68 Q 46 60 80 38 T 144 10"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeDasharray="5 7"
+        strokeLinecap="round"
+        className="flight-dash"
+        opacity="0.6"
+      />
+      <path
+        d="M16 78 Q 52 70 86 50 T 150 26"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeDasharray="4 9"
+        strokeLinecap="round"
+        className="flight-dash-slow"
+        opacity="0.35"
+      />
+      <text x="130" y="18" fontSize="22" transform="rotate(-20 138 14)">
+        ✈️
+      </text>
+    </svg>
+  );
+}
