@@ -1,11 +1,12 @@
 import { IMG } from "./images";
 
 export type CourseStatus = "open" | "full" | "soon";
+export type CourseCategory = "ja" | "it" | "tokutei";
 
 export type Course = {
   id: string;
-  category: "ja" | "it" | "tokutei";
-  name: string;
+  category: CourseCategory;
+  name: { my: string; ja: string; en: string };
   level: string;
   startDate: string;
   duration: string;
@@ -15,12 +16,17 @@ export type Course = {
   image: string;
 };
 
-// TODO: ဒီ data ကို Laravel API ကနေ ရယူမယ် (လက်ရှိ sample placeholder)
+// pktjapan.jp ရဲ့ ပညာရေးအမျိုးအစားများအပေါ် အခြေခံ (official types)
+// ရက်/ကြေး က sample placeholder — နောက်ပိုင်း Laravel API ကနေ ရယူမည်
 export const courses: Course[] = [
   {
     id: "n5-nov",
     category: "ja",
-    name: "ဂျပန်စာ N5 (အခြေခံ)",
+    name: {
+      my: "ဂျပန်စာ N5 (အခြေခံ)",
+      ja: "日本語 N5（初級）",
+      en: "Japanese N5 (Beginner)",
+    },
     level: "N5",
     startDate: "2026.11.15",
     duration: "5 လ",
@@ -32,7 +38,7 @@ export const courses: Course[] = [
   {
     id: "n4-nov",
     category: "ja",
-    name: "ဂျပန်စာ N4",
+    name: { my: "ဂျပန်စာ N4", ja: "日本語 N4", en: "Japanese N4" },
     level: "N4",
     startDate: "2026.11.20",
     duration: "5 လ",
@@ -44,7 +50,7 @@ export const courses: Course[] = [
   {
     id: "n3-soon",
     category: "ja",
-    name: "ဂျပန်စာ N3",
+    name: { my: "ဂျပန်စာ N3", ja: "日本語 N3", en: "Japanese N3" },
     level: "N3",
     startDate: "2026.12.01",
     duration: "6 လ",
@@ -56,7 +62,11 @@ export const courses: Course[] = [
   {
     id: "it-full",
     category: "it",
-    name: "IT အင်ဂျင်နီယာ (Web)",
+    name: {
+      my: "ကျွမ်းကျင်လုပ်သား IT ပညာရေး",
+      ja: "高度人材 IT教育",
+      en: "Highly-Skilled IT Education",
+    },
     level: "IT",
     startDate: "2026.11.10",
     duration: "6 လ",
@@ -68,7 +78,11 @@ export const courses: Course[] = [
   {
     id: "kaigo-open",
     category: "tokutei",
-    name: "သီးသန့်ကျွမ်းကျင် (စောင့်ရှောက်)",
+    name: {
+      my: "သီးသန့်ကျွမ်းကျင် (စောင့်ရှောက်)",
+      ja: "特定技能（介護）",
+      en: "Specified Skills (Care)",
+    },
     level: "介護",
     startDate: "2026.11.25",
     duration: "4 လ",
@@ -80,7 +94,11 @@ export const courses: Course[] = [
   {
     id: "shukuhaku-soon",
     category: "tokutei",
-    name: "သီးသန့်ကျွမ်းကျင် (ဟိုတယ်)",
+    name: {
+      my: "သီးသန့်ကျွမ်းကျင် (ဟိုတယ်)",
+      ja: "特定技能（宿泊）",
+      en: "Specified Skills (Hotel)",
+    },
     level: "宿泊",
     startDate: "2026.12.05",
     duration: "4 လ",

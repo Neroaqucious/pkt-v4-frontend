@@ -154,6 +154,21 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* organic wave divider into next section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0">
+        <svg
+          viewBox="0 0 1440 80"
+          className="h-10 w-full sm:h-16"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

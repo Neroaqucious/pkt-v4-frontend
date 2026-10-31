@@ -33,13 +33,13 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 
 function CourseCard({ course }: { course: Course }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:shadow-md">
       <div className="relative aspect-[3/2]">
         <Image
           src={course.image}
-          alt={course.name}
+          alt={course.name[lang]}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover"
@@ -57,7 +57,9 @@ function CourseCard({ course }: { course: Course }) {
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-bold text-ink">{course.name}</h3>
+        <h3 className="font-heading text-lg font-bold text-ink">
+          {course.name[lang]}
+        </h3>
 
         <dl className="mt-4 space-y-2 text-sm">
           <Row label={t("courses.open.start")} value={course.startDate} />
@@ -69,7 +71,7 @@ function CourseCard({ course }: { course: Course }) {
         <div className="mt-auto pt-5">
           <Link
             href="/contact"
-            className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${
+            className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 font-ui text-sm font-bold transition-colors ${
               course.status === "full"
                 ? "cursor-not-allowed bg-gray-100 text-gray-400"
                 : "bg-brand text-white hover:bg-brand-dark"

@@ -7,6 +7,7 @@ import Section from "./Section";
 import Reveal from "./Reveal";
 import StatCounter from "./StatCounter";
 import { IMG } from "@/lib/images";
+import { news, newsCategoryLabel } from "@/lib/news";
 import { Squiggle } from "./Decor";
 
 function SectionHeading({
@@ -243,38 +244,35 @@ export function Testimonials() {
 }
 
 /* ---------------- News ---------------- */
-const NEWS = [
-  { date: "2026.03.06", title: "သာဝန်းကြီးကျောင်း ဂျပန်စာသင်တန်းအကြောင်း မိတ်ဆက်" },
-  { date: "2026.03.05", title: "PKT သာဝန်းကြီးကျောင်း တရားဝင်ဖွင့်လှစ်" },
-  { date: "2026.03.04", title: "ဒေသခံများ လာရောက်အားပေးခဲ့ကြသည်" },
-];
-
 export function NewsList() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const latest = news.slice(0, 4);
   return (
     <Section id="news" tone="cream">
       <div className="flex items-end justify-between gap-4">
-        <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+        <h2 className="font-heading text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           {t("news.title")}
         </h2>
         <a
           href="/news"
-          className="hidden shrink-0 text-sm font-bold text-brand hover:underline sm:block"
+          className="hidden shrink-0 font-ui text-sm font-bold text-brand hover:underline sm:block"
         >
           {t("news.more")} →
         </a>
       </div>
       <div className="mt-8 divide-y divide-line border-y border-line">
-        {NEWS.map((n, i) => (
-          <Reveal key={i} delay={i * 60}>
+        {latest.map((n, i) => (
+          <Reveal key={n.slug} delay={i * 60}>
             <a
-              href="/news"
+              href={`/news/${n.slug}`}
               className="group flex items-center justify-between gap-4 py-4 transition-colors hover:bg-white"
             >
               <div>
-                <div className="text-xs font-semibold text-muted">{n.date}</div>
-                <div className="mt-1 font-semibold text-ink group-hover:text-brand">
-                  {n.title}
+                <div className="font-ui text-xs font-semibold text-muted">
+                  {n.date} · {newsCategoryLabel[n.category][lang]}
+                </div>
+                <div className="mt-1 font-heading font-semibold text-ink transition-colors group-hover:text-brand">
+                  {n.title[lang]}
                 </div>
               </div>
               <span className="text-brand transition-transform group-hover:translate-x-1">
@@ -286,7 +284,7 @@ export function NewsList() {
       </div>
       <a
         href="/news"
-        className="mt-6 inline-block text-sm font-bold text-brand hover:underline sm:hidden"
+        className="mt-6 inline-block font-ui text-sm font-bold text-brand hover:underline sm:hidden"
       >
         {t("news.more")} →
       </a>
@@ -411,7 +409,7 @@ export function ContactForm() {
           </label>
           <button
             type="submit"
-            className="rounded-full bg-brand px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-dark sm:col-span-2"
+            className="rounded-full bg-brand px-6 py-3 font-ui text-sm font-bold text-white transition-colors hover:bg-brand-dark sm:col-span-2"
           >
             {t("form.submit")}
           </button>
