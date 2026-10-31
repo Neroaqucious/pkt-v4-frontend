@@ -20,8 +20,51 @@ const SCHOOLS = [
 export default function Footer() {
   const { t } = useI18n();
   return (
-    <footer className="w-full bg-ink text-white">
-      <div className="mx-auto max-w-7xl px-4 py-14 font-ui sm:px-6 lg:px-8">
+    <footer className="relative w-full overflow-hidden bg-ink text-white">
+      {/* Japanese pattern watermark (seigaiha left / asanoha right) */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="footer-seigaiha"
+            width="80"
+            height="80"
+            patternUnits="userSpaceOnUse"
+          >
+            <g fill="none" stroke="#d4a843" strokeWidth="1.2">
+              <path d="M0 40 A40 40 0 0 1 80 40" />
+              <path d="M10 40 A30 30 0 0 1 70 40" />
+              <path d="M20 40 A20 20 0 0 1 60 40" />
+              <path d="M30 40 A10 10 0 0 1 50 40" />
+              <path d="M-40 80 A40 40 0 0 1 40 80" />
+              <path d="M-30 80 A30 30 0 0 1 30 80" />
+              <path d="M-20 80 A20 20 0 0 1 20 80" />
+              <path d="M-10 80 A10 10 0 0 1 10 80" />
+              <path d="M40 80 A40 40 0 0 1 120 80" />
+              <path d="M50 80 A30 30 0 0 1 110 80" />
+              <path d="M60 80 A20 20 0 0 1 100 80" />
+              <path d="M70 80 A10 10 0 0 1 90 80" />
+            </g>
+          </pattern>
+          <pattern
+            id="footer-asanoha"
+            width="52"
+            height="60"
+            patternUnits="userSpaceOnUse"
+          >
+            <g fill="none" stroke="#d4a843" strokeWidth="1">
+              <path d="M26 0 L52 15 L52 45 L26 60 L0 45 L0 15 Z" />
+              <path d="M26 30 L26 0 M26 30 L52 15 M26 30 L52 45 M26 30 L26 60 M26 30 L0 45 M26 30 L0 15" />
+            </g>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="50%" height="100%" fill="url(#footer-seigaiha)" opacity="0.03" />
+        <rect x="50%" y="0" width="50%" height="100%" fill="url(#footer-asanoha)" opacity="0.03" />
+      </svg>
+
+      <div className="relative mx-auto max-w-7xl px-4 py-14 font-ui sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div>
             <div className="font-display text-lg font-extrabold">
