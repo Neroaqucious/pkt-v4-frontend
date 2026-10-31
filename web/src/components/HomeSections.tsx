@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import Section from "./Section";
@@ -34,26 +34,73 @@ function SectionHeading({
 }
 
 /* ---------------- Journey ---------------- */
+const JOURNEY_STEPS = [
+  { icon: "🎓", k: 1 },
+  { icon: "📝", k: 2 },
+  { icon: "✈️", k: 3 },
+  { icon: "🏠", k: 4 },
+];
+
 export function Journey() {
   const { t } = useI18n();
-  const steps = [1, 2, 3, 4];
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [lineOn, setLineOn] = useState(false);
+
+  useEffect(() => {
+    const el = lineRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setLineOn(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <Section id="journey" tone="white">
       <SectionHeading title={t("journey.title")} sub={t("journey.sub")} />
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((n, i) => (
-          <Reveal key={n} delay={i * 90}>
-            <div className="group relative h-full rounded-2xl border border-line bg-white p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-md">
-              <span className="text-3xl font-extrabold text-gold">
-                {String(n).padStart(2, "0")}
-              </span>
-              <h3 className="mt-3 text-lg font-bold text-ink">
-                {t(`journey.${n}.t`)}
-              </h3>
-              <p className="mt-2 text-sm text-muted">{t(`journey.${n}.d`)}</p>
-            </div>
-          </Reveal>
-        ))}
+
+      <div className="relative mt-16">
+        {/* connecting line (desktop) — draws on scroll */}
+        <div className="absolute left-[12.5%] right-[12.5%] top-8 hidden lg:block">
+          <div
+            ref={lineRef}
+            className={`h-0.5 origin-left bg-gradient-to-r from-gold via-brand to-brand transition-transform duration-1000 ease-out ${
+              lineOn ? "scale-x-100" : "scale-x-0"
+            }`}
+          />
+        </div>
+
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {JOURNEY_STEPS.map((s, i) => (
+            <Reveal key={s.k} delay={i * 120}>
+              <div className="group relative flex flex-col items-center text-center">
+                <div className="relative">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-white text-2xl shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-brand group-hover:shadow-lg group-hover:shadow-brand/10">
+                    {s.icon}
+                  </div>
+                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white shadow">
+                    {s.k}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-ink">
+                  {t(`journey.${s.k}.t`)}
+                </h3>
+                <p className="mt-2 max-w-[240px] text-sm leading-relaxed text-muted">
+                  {t(`journey.${s.k}.d`)}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </Section>
   );
