@@ -7,27 +7,42 @@ import Section from "./Section";
 import Reveal from "./Reveal";
 import StatCounter from "./StatCounter";
 import { IMG } from "@/lib/images";
+import { Squiggle } from "./Decor";
 
 function SectionHeading({
   title,
   sub,
+  eyebrow,
   dark = false,
 }: {
   title: string;
   sub?: string;
+  eyebrow?: string;
   dark?: boolean;
 }) {
   return (
     <Reveal className="mx-auto max-w-2xl text-center">
+      {eyebrow && (
+        <p
+          className={`font-ui text-xs font-bold uppercase tracking-[0.25em] ${
+            dark ? "text-gold" : "text-brand"
+          }`}
+        >
+          {eyebrow}
+        </p>
+      )}
       <h2
-        className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${
+        className={`mt-2 font-heading text-3xl font-bold tracking-tight sm:text-4xl ${
           dark ? "text-white" : "text-ink"
         }`}
       >
         {title}
       </h2>
+      <Squiggle className="mx-auto mt-3 h-2.5 w-24 text-gold" />
       {sub && (
-        <p className={`mt-3 ${dark ? "text-white/70" : "text-muted"}`}>{sub}</p>
+        <p className={`mt-3 font-body ${dark ? "text-white/70" : "text-muted"}`}>
+          {sub}
+        </p>
       )}
     </Reveal>
   );
@@ -45,7 +60,7 @@ export function Journey() {
   const { t } = useI18n();
   return (
     <Section id="journey" tone="white">
-      <SectionHeading title={t("journey.title")} sub={t("journey.sub")} />
+      <SectionHeading eyebrow="OUR JOURNEY" title={t("journey.title")} sub={t("journey.sub")} />
       <div className="mt-12 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {JOURNEY_STEPS.map((s, i) => (
           <Reveal key={s.k} delay={i * 100}>
@@ -95,7 +110,7 @@ export function WhyPkt() {
   const { t } = useI18n();
   return (
     <Section id="why" tone="cream">
-      <SectionHeading title={t("why.title")} sub={t("why.sub")} />
+      <SectionHeading eyebrow="WHY PKT" title={t("why.title")} sub={t("why.sub")} />
       <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
         {WHY_ITEMS.map((it, i) => (
           <Reveal key={it.k} delay={i * 100}>
@@ -136,7 +151,7 @@ export function Courses() {
   ];
   return (
     <Section id="courses" tone="white">
-      <SectionHeading title={t("courses.title")} sub={t("courses.sub")} />
+      <SectionHeading eyebrow="COURSES" title={t("courses.title")} sub={t("courses.sub")} />
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {courses.map((c, i) => (
           <Reveal key={c.k} delay={i * 90}>
@@ -206,11 +221,11 @@ export function Testimonials() {
   const { t } = useI18n();
   return (
     <Section id="stories" tone="white">
-      <SectionHeading title={t("stories.title")} />
+      <SectionHeading eyebrow="TESTIMONIALS" title={t("stories.title")} />
       <Reveal className="mx-auto mt-12 max-w-3xl">
         <figure className="rounded-3xl border border-line bg-white p-8 text-center shadow-sm sm:p-12">
           <div className="text-4xl text-gold">“</div>
-          <blockquote className="mt-2 text-xl font-medium leading-relaxed text-ink sm:text-2xl">
+          <blockquote className="mt-2 font-serif text-2xl italic leading-relaxed text-ink sm:text-3xl">
             {t("stories.quote")}
           </blockquote>
           <figcaption className="mt-6 flex items-center justify-center gap-3">
@@ -283,23 +298,44 @@ export function NewsList() {
 export function CtaBanner() {
   const { t } = useI18n();
   return (
-    <section className="w-full bg-brand">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative w-full overflow-hidden bg-brand">
+      {/* watermark — "enrollment open" */}
+      <div className="pointer-events-none absolute inset-0 select-none overflow-hidden">
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-[15vw] font-extrabold uppercase leading-none tracking-tighter text-white/[0.07]">
+          ENROLLMENT OPEN
+        </span>
+      </div>
+      {/* soft blobs */}
+      <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -right-10 h-72 w-72 rounded-full bg-gold/20 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 font-ui text-xs font-bold uppercase tracking-[0.2em] text-white backdrop-blur">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
+            </span>
+            {t("cta.badge")}
+          </span>
+
+          <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
             {t("cta.title")}
           </h2>
-          <p className="mt-3 text-white/80">{t("cta.sub")}</p>
+          <p className="mx-auto mt-4 max-w-xl font-body text-white/80">
+            {t("cta.sub")}
+          </p>
+
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href="#contact"
-              className="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-bold text-brand transition-colors hover:bg-gold-tint"
+              className="inline-flex items-center rounded-full bg-white px-6 py-3 font-ui text-sm font-bold text-brand transition-colors hover:bg-gold-tint"
             >
               {t("cta.primary")}
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center rounded-full border border-white/40 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center rounded-full border border-white/40 px-6 py-3 font-ui text-sm font-bold text-white transition-colors hover:bg-white/10"
             >
               {t("cta.secondary")}
             </a>
@@ -320,7 +356,7 @@ export function ContactForm() {
 
   return (
     <Section id="contact" tone="white">
-      <SectionHeading title={t("contact.title")} sub={t("contact.sub")} />
+      <SectionHeading eyebrow="GET IN TOUCH" title={t("contact.title")} sub={t("contact.sub")} />
       <Reveal className="mx-auto mt-12 max-w-2xl">
         <form
           className="grid gap-4 sm:grid-cols-2"

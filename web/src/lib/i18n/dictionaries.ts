@@ -82,6 +82,7 @@ export const dictionaries: Record<Lang, Dict> = {
 
     "cta.title": "မင်းရဲ့ အိပ်မက်ကို ဒီနေ့ စတင်လိုက်ပါ",
     "cta.sub": "အခမဲ့ ဆွေးနွေးတိုင်ပင်နိုင်ပါသည်",
+    "cta.badge": "ကျောင်းအပ်လက်ခံနေသည်",
     "cta.primary": "လျှောက်ထားရန်",
     "cta.secondary": "အခမဲ့ ဆွေးနွေးရန်",
 
@@ -245,6 +246,7 @@ export const dictionaries: Record<Lang, Dict> = {
 
     "cta.title": "夢を今日から始めよう",
     "cta.sub": "無料相談を受け付けています",
+    "cta.badge": "入学受付中",
     "cta.primary": "申し込む",
     "cta.secondary": "無料相談",
 
@@ -408,6 +410,7 @@ export const dictionaries: Record<Lang, Dict> = {
 
     "cta.title": "Start your dream today",
     "cta.sub": "Free consultation available",
+    "cta.badge": "Enrollment Open",
     "cta.primary": "Apply now",
     "cta.secondary": "Free consultation",
 

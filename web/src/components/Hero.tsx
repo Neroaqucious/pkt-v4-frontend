@@ -50,14 +50,17 @@ export default function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-cream">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:px-8">
+      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-brand/10 blur-3xl" />
+      <div className="dot-grid pointer-events-none absolute left-8 top-24 hidden h-40 w-40 opacity-40 lg:block" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:px-8">
         {/* Left — text */}
         <div>
-          <p className="animate-fade-up text-sm font-bold uppercase tracking-[0.2em] text-brand">
+          <p className="animate-fade-up font-ui text-sm font-bold uppercase tracking-[0.2em] text-brand">
             {t("hero.eyebrow")}
           </p>
           <h1
-            className="animate-fade-up mt-4 text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl"
+            className="animate-fade-up mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl"
             style={{ animationDelay: "80ms" }}
           >
             {t("hero.title")}
@@ -81,7 +84,7 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-dark"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-ui text-sm font-bold text-white transition-colors hover:bg-brand-dark"
             >
               {t("hero.cta1")}
               <span className="transition-transform group-hover:translate-x-1">
@@ -90,7 +93,7 @@ export default function Hero() {
             </a>
             <a
               href="#courses"
-              className="inline-flex items-center rounded-full border border-line bg-white px-6 py-3 text-sm font-bold text-ink transition-colors hover:border-brand hover:text-brand"
+              className="inline-flex items-center rounded-full border border-line bg-white px-6 py-3 font-ui text-sm font-bold text-ink transition-colors hover:border-brand hover:text-brand"
             >
               {t("hero.cta2")}
             </a>

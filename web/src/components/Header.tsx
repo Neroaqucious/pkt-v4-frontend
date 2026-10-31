@@ -42,9 +42,9 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:flex">{links}</nav>
+        <nav className="hidden items-center gap-5 font-ui xl:flex">{links}</nav>
 
-        <div className="hidden items-center gap-3 xl:flex">
+        <div className="hidden items-center gap-3 font-ui xl:flex">
           <LanguageSwitch />
           <Link
             href="/login"
@@ -84,7 +84,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-line bg-white px-4 py-4 xl:hidden">
+        <div className="border-t border-line bg-white px-4 py-4 font-ui xl:hidden">
           <div className="flex flex-col gap-4">
             {links}
             <LanguageSwitch />

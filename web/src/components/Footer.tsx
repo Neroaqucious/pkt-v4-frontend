@@ -21,10 +21,10 @@ export default function Footer() {
   const { t } = useI18n();
   return (
     <footer className="w-full bg-ink text-white">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-14 font-ui sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div>
-            <div className="text-lg font-extrabold">
+            <div className="font-display text-lg font-extrabold">
               PKT <span className="text-gold">MYANMAR</span>
             </div>
             <p className="mt-3 text-sm text-white/60">{t("footer.tagline")}</p>
