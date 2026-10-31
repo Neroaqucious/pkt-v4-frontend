@@ -43,10 +43,18 @@ const TILE_SHAPES = [
   "rounded-tl-[3.5rem] rounded-tr-[1.25rem] rounded-bl-[1.25rem] rounded-br-[3.5rem]",
 ];
 
-function HeroTile({ tile, setIdx }: { tile: number; setIdx: number }) {
+function HeroTile({
+  tile,
+  setIdx,
+  className = "aspect-[4/3]",
+}: {
+  tile: number;
+  setIdx: number;
+  className?: string;
+}) {
   return (
     <div
-      className={`relative aspect-[4/3] overflow-hidden shadow-md ${
+      className={`relative overflow-hidden shadow-md ${className} ${
         TILE_SHAPES[tile % TILE_SHAPES.length]
       }`}
     >
@@ -194,18 +202,27 @@ export default function Hero() {
             🛂
           </div>
 
-          <div className="flex gap-3">
-            {/* column A — 3 images */}
-            <div className="flex flex-1 flex-col gap-3">
-              {[0, 1, 2].map((tile) => (
-                <HeroTile key={tile} tile={tile} setIdx={setIdx} />
-              ))}
+          <div className="flex gap-2">
+            {/* Left column — large + small + accent card (fills space) */}
+            <div className="flex min-w-0 flex-[1.3] flex-col gap-2">
+              <HeroTile tile={0} setIdx={setIdx} className="aspect-[4/5]" />
+              <HeroTile tile={1} setIdx={setIdx} className="aspect-[5/4]" />
+              <div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-[2rem] bg-gradient-to-br from-gold-tint to-white p-3 text-center ring-1 ring-line">
+                <span className="text-2xl">🌸</span>
+                <span className="text-[11px] font-bold leading-tight text-ink">
+                  Myanmar × Japan
+                </span>
+                <span className="text-[9px] uppercase tracking-wider text-muted">
+                  Education Bridge
+                </span>
+              </div>
             </div>
-            {/* column B — 2 images, offset down */}
-            <div className="flex flex-1 flex-col gap-3 pt-10">
-              {[3, 4].map((tile) => (
-                <HeroTile key={tile} tile={tile} setIdx={setIdx} />
-              ))}
+
+            {/* Right column — small + large + small */}
+            <div className="flex min-w-0 flex-1 flex-col gap-2">
+              <HeroTile tile={2} setIdx={setIdx} className="aspect-square" />
+              <HeroTile tile={3} setIdx={setIdx} className="aspect-[3/4]" />
+              <HeroTile tile={4} setIdx={setIdx} className="aspect-[4/3]" />
             </div>
           </div>
 
