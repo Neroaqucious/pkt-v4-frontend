@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import PageHero from "./PageHero";
@@ -34,38 +35,49 @@ function Row({ label, value }: { label: string; value: string }) {
 function CourseCard({ course }: { course: Course }) {
   const { t } = useI18n();
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-md">
-      <div className="flex items-center justify-between">
-        <span className="rounded-full bg-gold-tint px-3 py-1 text-xs font-bold text-gold">
-          {course.level}
-        </span>
-        <span
-          className={`rounded-full px-3 py-1 text-xs font-bold ${STATUS_STYLE[course.status]}`}
-        >
-          {t(`courses.open.status.${course.status}`)}
-        </span>
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:shadow-md">
+      <div className="relative aspect-[3/2]">
+        <Image
+          src={course.image}
+          alt={course.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
+        <div className="absolute left-3 top-3 flex flex-wrap gap-2">
+          <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-gold">
+            {course.level}
+          </span>
+          <span
+            className={`rounded-full px-3 py-1 text-xs font-bold ${STATUS_STYLE[course.status]}`}
+          >
+            {t(`courses.open.status.${course.status}`)}
+          </span>
+        </div>
       </div>
 
-      <h3 className="mt-4 text-lg font-bold text-ink">{course.name}</h3>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-lg font-bold text-ink">{course.name}</h3>
 
-      <dl className="mt-4 space-y-2 text-sm">
-        <Row label={t("courses.open.start")} value={course.startDate} />
-        <Row label={t("courses.open.duration")} value={course.duration} />
-        <Row label={t("courses.open.schedule")} value={course.schedule} />
-        <Row label={t("courses.open.fee")} value={course.fee} />
-      </dl>
+        <dl className="mt-4 space-y-2 text-sm">
+          <Row label={t("courses.open.start")} value={course.startDate} />
+          <Row label={t("courses.open.duration")} value={course.duration} />
+          <Row label={t("courses.open.schedule")} value={course.schedule} />
+          <Row label={t("courses.open.fee")} value={course.fee} />
+        </dl>
 
-      <div className="mt-auto pt-5">
-        <Link
-          href="/contact"
-          className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${
-            course.status === "full"
-              ? "cursor-not-allowed bg-gray-100 text-gray-400"
-              : "bg-brand text-white hover:bg-brand-dark"
-          }`}
-        >
-          {course.status === "full" ? t("courses.open.status.full") : t("nav.apply")}
-        </Link>
+        <div className="mt-auto pt-5">
+          <Link
+            href="/contact"
+            className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${
+              course.status === "full"
+                ? "cursor-not-allowed bg-gray-100 text-gray-400"
+                : "bg-brand text-white hover:bg-brand-dark"
+            }`}
+          >
+            {course.status === "full" ? t("courses.open.status.full") : t("nav.apply")}
+          </Link>
+        </div>
       </div>
     </div>
   );

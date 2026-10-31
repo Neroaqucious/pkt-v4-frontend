@@ -10,9 +10,11 @@ export type Course = {
   schedule: string;
   fee: string;
   status: CourseStatus;
+  image: string;
 };
 
 // TODO: ဒီ data ကို WordPress / Supabase ကနေ ရယူမယ် (လက်ရှိ sample placeholder)
+// image က placehold (picsum) — တကယ့်သင်တန်းပုံ ရလာရင် URL အစားထိုးရုံပါပဲ
 export const courses: Course[] = [
   {
     id: "n5-nov",
@@ -24,6 +26,7 @@ export const courses: Course[] = [
     schedule: "တနင်္လာ – သောကြာ · 8:00–12:00",
     fee: "250,000 MMK",
     status: "open",
+    image: "https://picsum.photos/seed/pkt-n5/600/400",
   },
   {
     id: "n4-nov",
@@ -35,6 +38,7 @@ export const courses: Course[] = [
     schedule: "တနင်္လာ – သောကြာ · 13:00–17:00",
     fee: "300,000 MMK",
     status: "open",
+    image: "https://picsum.photos/seed/pkt-n4/600/400",
   },
   {
     id: "n3-soon",
@@ -46,6 +50,7 @@ export const courses: Course[] = [
     schedule: "စနေ – တနင်္ဂနွေ · 9:00–16:00",
     fee: "350,000 MMK",
     status: "soon",
+    image: "https://picsum.photos/seed/pkt-n3/600/400",
   },
   {
     id: "it-full",
@@ -57,6 +62,7 @@ export const courses: Course[] = [
     schedule: "တနင်္လာ – သောကြာ · 18:00–21:00",
     fee: "800,000 MMK",
     status: "full",
+    image: "https://picsum.photos/seed/pkt-it/600/400",
   },
   {
     id: "kaigo-open",
@@ -68,6 +74,7 @@ export const courses: Course[] = [
     schedule: "တနင်္လာ – သောကြာ · 8:00–12:00",
     fee: "400,000 MMK",
     status: "open",
+    image: "https://picsum.photos/seed/pkt-kaigo/600/400",
   },
   {
     id: "shukuhaku-soon",
@@ -79,5 +86,6 @@ export const courses: Course[] = [
     schedule: "တနင်္လာ – သောကြာ · 13:00–17:00",
     fee: "400,000 MMK",
     status: "soon",
+    image: "https://picsum.photos/seed/pkt-hotel/600/400",
   },
 ];
