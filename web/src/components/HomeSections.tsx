@@ -62,6 +62,7 @@ export function Journey() {
   const { t } = useI18n();
   const roadRef = useRef<HTMLDivElement>(null);
   const [roadOn, setRoadOn] = useState(false);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   useEffect(() => {
     const el = roadRef.current;
@@ -96,7 +97,11 @@ export function Journey() {
           {[0, 1, 2, 3].map((i) => (
             <span
               key={i}
-              className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-brand bg-white"
+              className={`absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-300 ${
+                hovered === i
+                  ? "scale-[1.9] border-brand bg-brand shadow-[0_0_0_4px_rgba(196,30,36,0.15)]"
+                  : "border-brand bg-white"
+              }`}
               style={{ left: `${((i + 0.5) / 4) * 100}%` }}
             />
           ))}
@@ -104,7 +109,11 @@ export function Journey() {
         <div className="grid items-start gap-6 pt-8 sm:grid-cols-2 lg:grid-cols-4">
         {JOURNEY_STEPS.map((s, i) => (
           <Reveal key={s.k} delay={i * 100}>
-            <div className="group overflow-hidden rounded-2xl bg-white ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
+            <div
+              className="group overflow-hidden rounded-2xl bg-white ring-1 ring-line transition-shadow duration-300 hover:shadow-xl"
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+            >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={s.img}
