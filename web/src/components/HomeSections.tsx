@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import Section from "./Section";
@@ -60,10 +60,48 @@ const JOURNEY_STEPS = [
 
 export function Journey() {
   const { t } = useI18n();
+  const roadRef = useRef<HTMLDivElement>(null);
+  const [roadOn, setRoadOn] = useState(false);
+
+  useEffect(() => {
+    const el = roadRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setRoadOn(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <Section id="journey" tone="white">
       <SectionHeading eyebrow="OUR JOURNEY" title={t("journey.title")} sub={t("journey.sub")} />
-      <div className="mt-12 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div ref={roadRef} className="relative mt-14">
+        {/* animated road line (left → right) */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-0.5 lg:block">
+          <div className="absolute inset-0 rounded-full bg-line" />
+          <div
+            className={`absolute inset-0 origin-left rounded-full bg-gradient-to-r from-brand via-brand to-gold transition-transform duration-[1600ms] ease-out ${
+              roadOn ? "scale-x-100" : "scale-x-0"
+            }`}
+          />
+          {[0, 1, 2, 3].map((i) => (
+            <span
+              key={i}
+              className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-brand bg-white"
+              style={{ left: `${((i + 0.5) / 4) * 100}%` }}
+            />
+          ))}
+        </div>
+        <div className="grid items-start gap-6 pt-8 sm:grid-cols-2 lg:grid-cols-4">
         {JOURNEY_STEPS.map((s, i) => (
           <Reveal key={s.k} delay={i * 100}>
             <div className="group overflow-hidden rounded-2xl bg-white ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
@@ -96,6 +134,7 @@ export function Journey() {
             </div>
           </Reveal>
         ))}
+        </div>
       </div>
     </Section>
   );
