@@ -126,19 +126,32 @@ body {
   border-radius: 4px;
 }
 .skip-link {
-  position: absolute;
-  left: 12px;
-  top: -60px;
-  z-index: 100;
+  position: fixed;
+  left: 50%;
+  top: -80px;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: #c41e24;
   color: #fff;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 14px;
   font-weight: 700;
-  transition: top 0.2s ease;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 28px rgba(196, 30, 36, 0.35);
+  transition: top 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.skip-link::before {
+  content: "↓";
+  font-weight: 800;
 }
 .skip-link:focus {
-  top: 12px;
+  top: 16px;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

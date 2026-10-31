@@ -35,18 +35,6 @@ const PLANES: PlaneCfg[] = [
     start: { fx: 0.5, fy: 0.5 },
   },
   {
-    fill: "#6b7280",
-    stroke: "none",
-    strokeWidth: 0,
-    planeOpacity: 0.5,
-    dotColor: "#8b9099",
-    dotOpacity: 0.5,
-    durBase: 17,
-    durRange: 5,
-    planeScale: 1.35,
-    start: { fx: 0.25, fy: 0.7 },
-  },
-  {
     fill: "#ffffff",
     stroke: "#d4a843",
     strokeWidth: 1.6,
