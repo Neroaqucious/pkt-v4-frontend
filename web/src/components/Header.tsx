@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import LanguageSwitch from "./LanguageSwitch";
 
@@ -18,17 +19,25 @@ const NAV = [
 export default function Header() {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
-  const links = NAV.map((item) => (
-    <Link
-      key={item.key}
-      href={item.href}
-      onClick={() => setOpen(false)}
-      className="text-sm font-semibold text-ink transition-colors hover:text-brand"
-    >
-      {t(`nav.${item.key}`)}
-    </Link>
-  ));
+  const links = NAV.map((item) => {
+    const active =
+      item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+    return (
+      <Link
+        key={item.key}
+        href={item.href}
+        onClick={() => setOpen(false)}
+        aria-current={active ? "page" : undefined}
+        className={`text-sm font-semibold transition-colors ${
+          active ? "text-brand" : "text-ink hover:text-brand"
+        }`}
+      >
+        {t(`nav.${item.key}`)}
+      </Link>
+    );
+  });
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
