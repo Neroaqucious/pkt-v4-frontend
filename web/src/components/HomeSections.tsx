@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import Section from "./Section";
 import Reveal from "./Reveal";
 import StatCounter from "./StatCounter";
+import { IMG } from "@/lib/images";
 
 function SectionHeading({
   title,
@@ -148,12 +150,12 @@ export function StatsSection() {
       </div>
       <Reveal className="mt-12">
         <div className="grid grid-cols-4 gap-3">
-          {[0, 1, 2, 3].map((n) => (
+          {[IMG.education, IMG.code, IMG.studyLaptop, IMG.travel].map((src, n) => (
             <div
               key={n}
-              className="flex h-20 items-end rounded-lg bg-gradient-to-br from-brand-tint to-cream p-2 text-[10px] font-semibold text-muted sm:h-28"
+              className="relative h-20 overflow-hidden rounded-lg sm:h-28"
             >
-              photo
+              <Image src={src} alt="" fill sizes="25vw" className="object-cover" />
             </div>
           ))}
         </div>

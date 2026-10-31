@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import PageHero from "./PageHero";
 import Section from "./Section";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import { IMG } from "@/lib/images";
 
 const SCHOOLS = [
   "Thingangyun",
@@ -40,8 +42,14 @@ export default function AboutPage() {
       <Section tone="white">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <div className="flex aspect-[4/5] items-end rounded-2xl bg-gradient-to-br from-brand-tint to-cream p-4 text-xs font-semibold text-muted">
-              photo — founder
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              <Image
+                src={IMG.founder}
+                alt="Founder"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
           </Reveal>
           <Reveal delay={100}>

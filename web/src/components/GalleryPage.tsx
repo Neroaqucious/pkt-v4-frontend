@@ -1,12 +1,27 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import PageHero from "./PageHero";
 import Section from "./Section";
 import Reveal from "./Reveal";
+import { IMG } from "@/lib/images";
 
-const PHOTOS = Array.from({ length: 12 }, (_, i) => i + 1);
+const PHOTOS = [
+  IMG.fuji,
+  IMG.torii,
+  IMG.inari,
+  IMG.students,
+  IMG.education,
+  IMG.studyLaptop,
+  IMG.coding,
+  IMG.team,
+  IMG.consultation,
+  IMG.hotel,
+  IMG.care,
+  IMG.travel,
+];
 
 export default function GalleryPage() {
   const { t } = useI18n();
@@ -33,10 +48,16 @@ export default function GalleryPage() {
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {PHOTOS.map((n) => (
+          {PHOTOS.map((src, n) => (
             <Reveal key={n} delay={(n % 4) * 60}>
-              <div className="flex aspect-square items-end rounded-xl bg-gradient-to-br from-brand-tint to-gold-tint p-3 text-xs font-semibold text-muted transition-opacity hover:opacity-75">
-                photo {n}
+              <div className="relative aspect-square overflow-hidden rounded-xl transition-opacity hover:opacity-75">
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover"
+                />
               </div>
             </Reveal>
           ))}

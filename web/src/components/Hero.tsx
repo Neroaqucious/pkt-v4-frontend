@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import StatCounter from "./StatCounter";
 import { Fuji } from "./Motifs";
+import { IMG } from "@/lib/images";
 
 function Stat({
   value,
@@ -93,17 +95,17 @@ export default function Hero() {
         <div className="relative">
           <Fuji className="pointer-events-none absolute -bottom-2 right-0 w-64 text-ink opacity-[0.06]" />
           <div className="relative grid grid-cols-2 gap-3">
-            <div className="flex h-40 items-end rounded-2xl bg-gradient-to-br from-brand-tint to-cream p-3 text-xs font-semibold text-muted sm:h-48">
-              photo
+            <div className="relative h-40 overflow-hidden rounded-2xl sm:h-48">
+              <Image src={IMG.fuji} alt="" fill sizes="50vw" className="object-cover" />
             </div>
-            <div className="mt-6 flex h-40 items-end rounded-2xl bg-gradient-to-br from-gold-tint to-cream p-3 text-xs font-semibold text-muted sm:h-48">
-              photo
+            <div className="relative mt-6 h-40 overflow-hidden rounded-2xl sm:h-48">
+              <Image src={IMG.students} alt="" fill sizes="50vw" className="object-cover" />
             </div>
-            <div className="flex h-40 items-end rounded-2xl bg-gradient-to-br from-cream to-brand-tint p-3 text-xs font-semibold text-muted sm:h-48">
-              photo
+            <div className="relative h-40 overflow-hidden rounded-2xl sm:h-48">
+              <Image src={IMG.torii} alt="" fill sizes="50vw" className="object-cover" />
             </div>
-            <div className="-mt-6 flex h-40 items-end rounded-2xl bg-gradient-to-br from-cream to-gold-tint p-3 text-xs font-semibold text-muted sm:h-48">
-              photo
+            <div className="relative -mt-6 h-40 overflow-hidden rounded-2xl sm:h-48">
+              <Image src={IMG.studyLaptop} alt="" fill sizes="50vw" className="object-cover" />
             </div>
           </div>
           <div className="absolute -left-2 bottom-8 flex items-center gap-2 rounded-xl bg-white px-4 py-3 shadow-lg sm:-left-6">
