@@ -264,13 +264,14 @@ export function NewsList() {
             width="160"
             height="160"
             patternUnits="userSpaceOnUse"
+            patternTransform="scale(0.58)"
           >
             <g
               fill="none"
               stroke="#e2a25c"
-              strokeWidth="1.3"
+              strokeWidth="1.1"
               strokeLinecap="round"
-              opacity="0.4"
+              opacity="0.22"
             >
               <path d="M0 80 A80 80 0 0 1 160 80" />
               <path d="M20 80 A60 60 0 0 1 140 80" />
@@ -292,8 +293,8 @@ export function NewsList() {
               <g
                 key={idx}
                 transform={`translate(${cx} ${cy})`}
-                fill="#d97a2f"
-                opacity="0.4"
+                fill="#e6a973"
+                opacity="0.16"
               >
                 <ellipse cx="0" cy="-8" rx="4.5" ry="9" />
                 <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(72)" />
