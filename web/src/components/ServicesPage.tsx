@@ -5,6 +5,7 @@ import PageHero from "./PageHero";
 import Section from "./Section";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import Flow from "./Flow";
 
 const COURSE_ICONS = ["🇯🇵", "💻", "🛎"];
 
@@ -13,7 +14,11 @@ export default function ServicesPage() {
 
   return (
     <>
-      <PageHero title={t("services.hero")} sub={t("services.sub")} />
+      <PageHero
+        title={t("services.hero")}
+        sub={t("services.sub")}
+        breadcrumb={[{ labelKey: "nav.services" }]}
+      />
 
       {/* Overview */}
       <Section tone="white">
@@ -88,6 +93,7 @@ export default function ServicesPage() {
           ))}
         </div>
       </Section>
+      <Flow />
     </>
   );
 }

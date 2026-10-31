@@ -36,7 +36,11 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHero title={t("about.hero")} sub={t("about.sub")} />
+      <PageHero
+        title={t("about.hero")}
+        sub={t("about.sub")}
+        breadcrumb={[{ labelKey: "nav.about" }]}
+      />
 
       {/* Founder */}
       <Section tone="white">

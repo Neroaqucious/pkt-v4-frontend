@@ -17,7 +17,11 @@ export default function NewsPage() {
 
   return (
     <>
-      <PageHero title={t("news.hero")} sub={t("news.sub")} />
+      <PageHero
+        title={t("news.hero")}
+        sub={t("news.sub")}
+        breadcrumb={[{ labelKey: "nav.news" }]}
+      />
       <Section tone="white">
         <div className="flex gap-2">
           {["2026", "2025"].map((y) => (

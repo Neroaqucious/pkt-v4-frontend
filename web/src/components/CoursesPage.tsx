@@ -93,7 +93,11 @@ export default function CoursesPage() {
 
   return (
     <>
-      <PageHero title={t("courses.title")} sub={t("courses.sub")} />
+      <PageHero
+        title={t("courses.title")}
+        sub={t("courses.sub")}
+        breadcrumb={[{ labelKey: "nav.courses" }]}
+      />
 
       <Section tone="cream">
         <SectionHeading

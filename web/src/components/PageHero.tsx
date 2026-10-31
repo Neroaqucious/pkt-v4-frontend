@@ -1,14 +1,19 @@
 import { Squiggle } from "./Decor";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function PageHero({
   title,
   sub,
+  breadcrumb,
 }: {
   title: string;
   sub?: string;
+  breadcrumb?: { labelKey: string; href?: string }[];
 }) {
   return (
-    <section className="relative w-full overflow-hidden bg-cream">
+    <>
+      {breadcrumb && <Breadcrumbs items={breadcrumb} />}
+      <section className="relative w-full overflow-hidden bg-cream">
       <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gold/25 blur-3xl" />
       <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
       <div className="dot-grid-gold pointer-events-none absolute right-10 top-10 hidden h-32 w-32 opacity-60 lg:block" />
@@ -26,5 +31,6 @@ export default function PageHero({
         )}
       </div>
     </section>
+    </>
   );
 }

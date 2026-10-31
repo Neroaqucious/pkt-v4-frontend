@@ -15,7 +15,11 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero title={t("contact.title")} sub={t("contact.sub")} />
+      <PageHero
+        title={t("contact.title")}
+        sub={t("contact.sub")}
+        breadcrumb={[{ labelKey: "nav.contact" }]}
+      />
       <Section tone="white">
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal>

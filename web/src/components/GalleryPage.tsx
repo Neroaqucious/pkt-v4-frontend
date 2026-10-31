@@ -29,7 +29,11 @@ export default function GalleryPage() {
 
   return (
     <>
-      <PageHero title={t("gallery.hero")} sub={t("gallery.sub")} />
+      <PageHero
+        title={t("gallery.hero")}
+        sub={t("gallery.sub")}
+        breadcrumb={[{ labelKey: "nav.gallery" }]}
+      />
       <Section tone="dark">
         <div className="flex gap-2">
           {["2026", "2025"].map((y) => (
