@@ -129,3 +129,53 @@ export function SakuraBranch({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+export function MyanmarMap({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 140 190" className={className} aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M45,18 C60,12 78,16 92,28 C102,38 106,52 100,64 C96,72 98,84 104,96 C110,110 112,126 106,140 C100,154 92,164 84,168 L74,170 C70,156 66,142 60,130 C54,118 46,110 38,100 C28,88 22,72 24,56 C26,42 34,26 45,18 Z"
+      />
+      <text
+        x="70"
+        y="186"
+        textAnchor="middle"
+        fontSize="13"
+        fontWeight="700"
+        letterSpacing="2"
+        fill="currentColor"
+      >
+        MYANMAR
+      </text>
+    </svg>
+  );
+}
+
+export function JapanMap({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 160 200" className={className} aria-hidden="true">
+      <g fill="currentColor">
+        {/* Hokkaido */}
+        <path d="M112,18 C122,12 134,16 138,28 C141,39 134,50 124,50 C114,50 108,40 110,30 Z" />
+        {/* Honshu */}
+        <path d="M66,58 C80,56 96,66 106,82 C114,95 120,110 114,124 C110,133 102,136 96,130 C88,120 84,106 76,94 C68,82 60,72 61,64 C62,60 63,58 66,58 Z" />
+        {/* Shikoku */}
+        <path d="M82,122 C90,120 98,126 98,134 C98,142 90,146 84,142 C78,138 76,128 82,122 Z" />
+        {/* Kyushu */}
+        <path d="M56,120 C64,118 72,126 72,137 C72,149 64,159 56,157 C48,155 44,145 46,135 C48,127 52,121 56,120 Z" />
+      </g>
+      <text
+        x="80"
+        y="192"
+        textAnchor="middle"
+        fontSize="13"
+        fontWeight="700"
+        letterSpacing="3"
+        fill="currentColor"
+      >
+        JAPAN
+      </text>
+    </svg>
+  );
+}
