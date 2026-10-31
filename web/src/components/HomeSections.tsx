@@ -110,129 +110,39 @@ const WHY_ITEMS = [
 export function WhyPkt() {
   const { t } = useI18n();
   return (
-    <section id="why" className="relative w-full overflow-hidden bg-[#fdf6ea]">
-      {/* Japanese seigaiha + sakura watermark (orange/gold) */}
-      <svg
-        className="pointer-events-none absolute inset-0 h-full w-full"
-        aria-hidden="true"
-      >
-        <defs>
-          <pattern
-            id="why-jp"
-            width="160"
-            height="160"
-            patternUnits="userSpaceOnUse"
-          >
-            {/* seigaiha concentric arcs */}
-            <g
-              fill="none"
-              stroke="#e2a25c"
-              strokeWidth="1.3"
-              strokeLinecap="round"
-              opacity="0.4"
-            >
-              <path d="M0 80 A80 80 0 0 1 160 80" />
-              <path d="M20 80 A60 60 0 0 1 140 80" />
-              <path d="M40 80 A40 40 0 0 1 120 80" />
-              <path d="M60 80 A20 20 0 0 1 100 80" />
-              <path d="M-80 160 A80 80 0 0 1 80 160" />
-              <path d="M-60 160 A60 60 0 0 1 60 160" />
-              <path d="M-40 160 A40 40 0 0 1 40 160" />
-              <path d="M-20 160 A20 20 0 0 1 20 160" />
-              <path d="M80 160 A80 80 0 0 1 240 160" />
-              <path d="M100 160 A60 60 0 0 1 220 160" />
-              <path d="M120 160 A40 40 0 0 1 200 160" />
-              <path d="M140 160 A20 20 0 0 1 180 160" />
-            </g>
-            {/* sakura flowers */}
-            {[
-              [80, 80],
-              [0, 0],
-            ].map(([cx, cy], idx) => (
-              <g
-                key={idx}
-                transform={`translate(${cx} ${cy})`}
-                fill="#d97a2f"
-                opacity="0.4"
-              >
-                <ellipse cx="0" cy="-8" rx="4.5" ry="9" />
-                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(72)" />
-                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(144)" />
-                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(216)" />
-                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(288)" />
-                <circle cx="0" cy="0" r="2.5" fill="#fdf6ea" />
-              </g>
-            ))}
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#why-jp)" />
-      </svg>
-
-      {/* top wave border (blends from previous white section) */}
-      <div className="pointer-events-none absolute inset-x-0 top-0">
-        <svg
-          viewBox="0 0 1440 60"
-          preserveAspectRatio="none"
-          className="h-8 w-full sm:h-12"
-          aria-hidden="true"
-        >
-          <path
-            d="M0,0 L1440,0 L1440,32 C1200,64 960,0 720,32 C480,64 240,0 0,32 Z"
-            fill="#ffffff"
-          />
-        </svg>
-      </div>
-
-      {/* content */}
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="WHY PKT"
-          title={t("why.title")}
-          sub={t("why.sub")}
-        />
-        <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
-          {WHY_ITEMS.map((it, i) => (
-            <Reveal key={it.k} delay={i * 100}>
-              <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={it.img}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                  <h3 className="absolute inset-x-5 bottom-4 text-xl font-bold text-white">
-                    {t(`why.${it.k}.t`)}
-                  </h3>
-                </div>
-                <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
-                  <p className="p-5 text-sm leading-relaxed text-muted">
-                    {t(`why.${it.k}.d`)}
-                  </p>
-                </div>
+    <Section id="why" tone="cream">
+      <SectionHeading
+        eyebrow="WHY PKT"
+        title={t("why.title")}
+        sub={t("why.sub")}
+      />
+      <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
+        {WHY_ITEMS.map((it, i) => (
+          <Reveal key={it.k} delay={i * 100}>
+            <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={it.img}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <h3 className="absolute inset-x-5 bottom-4 text-xl font-bold text-white">
+                  {t(`why.${it.k}.t`)}
+                </h3>
               </div>
-            </Reveal>
-          ))}
-        </div>
+              <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
+                <p className="p-5 text-sm leading-relaxed text-muted">
+                  {t(`why.${it.k}.d`)}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
-
-      {/* bottom wave border (blends into next white section) */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0">
-        <svg
-          viewBox="0 0 1440 60"
-          preserveAspectRatio="none"
-          className="h-8 w-full sm:h-12"
-          aria-hidden="true"
-        >
-          <path
-            d="M0,60 L1440,60 L1440,28 C1200,-4 960,60 720,28 C480,-4 240,60 0,28 Z"
-            fill="#ffffff"
-          />
-        </svg>
-      </div>
-    </section>
+    </Section>
   );
 }
 
@@ -342,47 +252,134 @@ export function NewsList() {
   const { t, lang } = useI18n();
   const latest = news.slice(0, 4);
   return (
-    <Section id="news" tone="cream">
-      <div className="flex items-end justify-between gap-4">
-        <h2 className="font-heading text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          {t("news.title")}
-        </h2>
+    <section id="news" className="relative w-full overflow-hidden bg-[#fdf6ea]">
+      {/* Japanese seigaiha + sakura watermark (orange/gold) */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="news-jp"
+            width="160"
+            height="160"
+            patternUnits="userSpaceOnUse"
+          >
+            <g
+              fill="none"
+              stroke="#e2a25c"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              opacity="0.4"
+            >
+              <path d="M0 80 A80 80 0 0 1 160 80" />
+              <path d="M20 80 A60 60 0 0 1 140 80" />
+              <path d="M40 80 A40 40 0 0 1 120 80" />
+              <path d="M60 80 A20 20 0 0 1 100 80" />
+              <path d="M-80 160 A80 80 0 0 1 80 160" />
+              <path d="M-60 160 A60 60 0 0 1 60 160" />
+              <path d="M-40 160 A40 40 0 0 1 40 160" />
+              <path d="M-20 160 A20 20 0 0 1 20 160" />
+              <path d="M80 160 A80 80 0 0 1 240 160" />
+              <path d="M100 160 A60 60 0 0 1 220 160" />
+              <path d="M120 160 A40 40 0 0 1 200 160" />
+              <path d="M140 160 A20 20 0 0 1 180 160" />
+            </g>
+            {[
+              [80, 80],
+              [0, 0],
+            ].map(([cx, cy], idx) => (
+              <g
+                key={idx}
+                transform={`translate(${cx} ${cy})`}
+                fill="#d97a2f"
+                opacity="0.4"
+              >
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(72)" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(144)" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(216)" />
+                <ellipse cx="0" cy="-8" rx="4.5" ry="9" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="2.5" fill="#fdf6ea" />
+              </g>
+            ))}
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#news-jp)" />
+      </svg>
+
+      {/* top wave border (blends from previous white section) */}
+      <div className="pointer-events-none absolute inset-x-0 top-0">
+        <svg
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="h-8 w-full sm:h-12"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,0 L1440,0 L1440,32 C1200,64 960,0 720,32 C480,64 240,0 0,32 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            {t("news.title")}
+          </h2>
+          <a
+            href="/news"
+            className="hidden shrink-0 font-ui text-sm font-bold text-brand hover:underline sm:block"
+          >
+            {t("news.more")} →
+          </a>
+        </div>
+        <div className="mt-8 divide-y divide-line border-y border-line">
+          {latest.map((n, i) => (
+            <Reveal key={n.slug} delay={i * 60}>
+              <a
+                href={`/news/${n.slug}`}
+                className="group flex items-center justify-between gap-4 py-4 transition-colors hover:bg-white/60"
+              >
+                <div>
+                  <div className="font-ui text-xs font-semibold text-muted">
+                    {n.date} · {newsCategoryLabel[n.category][lang]}
+                  </div>
+                  <div className="mt-1 font-heading font-semibold text-ink transition-colors group-hover:text-brand">
+                    {n.title[lang]}
+                  </div>
+                </div>
+                <span className="text-brand transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+            </Reveal>
+          ))}
+        </div>
         <a
           href="/news"
-          className="hidden shrink-0 font-ui text-sm font-bold text-brand hover:underline sm:block"
+          className="mt-6 inline-block font-ui text-sm font-bold text-brand hover:underline sm:hidden"
         >
           {t("news.more")} →
         </a>
       </div>
-      <div className="mt-8 divide-y divide-line border-y border-line">
-        {latest.map((n, i) => (
-          <Reveal key={n.slug} delay={i * 60}>
-            <a
-              href={`/news/${n.slug}`}
-              className="group flex items-center justify-between gap-4 py-4 transition-colors hover:bg-white"
-            >
-              <div>
-                <div className="font-ui text-xs font-semibold text-muted">
-                  {n.date} · {newsCategoryLabel[n.category][lang]}
-                </div>
-                <div className="mt-1 font-heading font-semibold text-ink transition-colors group-hover:text-brand">
-                  {n.title[lang]}
-                </div>
-              </div>
-              <span className="text-brand transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </a>
-          </Reveal>
-        ))}
+
+      {/* bottom wave border (blends into next red CTA) */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0">
+        <svg
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="h-8 w-full sm:h-12"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,60 L1440,60 L1440,28 C1200,-4 960,60 720,28 C480,-4 240,60 0,28 Z"
+            fill="#c41e24"
+          />
+        </svg>
       </div>
-      <a
-        href="/news"
-        className="mt-6 inline-block font-ui text-sm font-bold text-brand hover:underline sm:hidden"
-      >
-        {t("news.more")} →
-      </a>
-    </Section>
+    </section>
   );
 }
 
