@@ -101,6 +101,7 @@ export default function Hero() {
             width="80"
             height="80"
             patternUnits="userSpaceOnUse"
+            patternTransform="scale(0.5)"
           >
             <g fill="none" stroke="#d9d5ce" strokeWidth="1.2" opacity="0.6">
               <path d="M0 40 A40 40 0 0 1 80 40" />
