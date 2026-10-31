@@ -144,11 +144,14 @@ export default function FlightTrail({
     >
       <g ref={trailRef} />
       <g ref={planeRef}>
-        <path
-          d="M20 0L6 -2.5L3 -9L0.5 -9L0 -2.5L-12 -2.5L-14 -7L-16.5 -7L-15.5 -2L-19 -1L-19 1L-15.5 2L-16.5 7L-14 7L-12 2.5L0 2.5L0.5 9L3 9L6 2.5Z"
-          fill="#6b7280"
-          opacity="0.5"
-        />
+        {/* real airplane silhouette (top view), rotated to point right */}
+        <g transform="rotate(90) scale(1.45) translate(-12,-12)">
+          <path
+            d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"
+            fill="#6b7280"
+            opacity="0.55"
+          />
+        </g>
       </g>
     </svg>
   );
