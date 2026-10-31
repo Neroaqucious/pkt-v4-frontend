@@ -62,3 +62,70 @@ export function FlightPath({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+export function SakuraBranch({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 360 820"
+      preserveAspectRatio="xMinYMid meet"
+      className={className}
+      aria-hidden="true"
+    >
+      <defs>
+        <g id="sk-flower">
+          <ellipse cx="0" cy="-13" rx="8" ry="15" fill="#f3b6c4" />
+          <ellipse cx="0" cy="-13" rx="8" ry="15" fill="#f3b6c4" transform="rotate(72)" />
+          <ellipse cx="0" cy="-13" rx="8" ry="15" fill="#f3b6c4" transform="rotate(144)" />
+          <ellipse cx="0" cy="-13" rx="8" ry="15" fill="#f3b6c4" transform="rotate(216)" />
+          <ellipse cx="0" cy="-13" rx="8" ry="15" fill="#f3b6c4" transform="rotate(288)" />
+          <circle cx="0" cy="0" r="4" fill="#d9698a" />
+        </g>
+      </defs>
+
+      {/* soft bokeh */}
+      <g fill="#f3b6c4" opacity="0.28">
+        <circle cx="60" cy="630" r="34" />
+        <circle cx="120" cy="690" r="22" />
+        <circle cx="210" cy="730" r="28" />
+        <circle cx="40" cy="480" r="20" />
+        <circle cx="280" cy="340" r="16" />
+      </g>
+
+      {/* branch + twigs */}
+      <g stroke="#6b4a3a" strokeWidth="6" strokeLinecap="round" fill="none">
+        <path d="M40 810 C60 690 80 580 130 480 C170 410 210 360 245 285" />
+        <path d="M100 570 C70 530 52 495 42 445" />
+        <path d="M135 475 C180 470 220 455 262 425" />
+        <path d="M200 385 C210 345 232 315 268 292" />
+        <path d="M172 430 C150 405 128 378 108 352" />
+        <path d="M70 650 C50 620 38 590 30 560" />
+      </g>
+
+      {/* blossoms */}
+      <use href="#sk-flower" transform="translate(245 285) rotate(15) scale(1.35)" />
+      <use href="#sk-flower" transform="translate(130 480) rotate(-10) scale(1.2)" />
+      <use href="#sk-flower" transform="translate(262 425) rotate(30) scale(1)" />
+      <use href="#sk-flower" transform="translate(108 352) rotate(-20) scale(0.85)" />
+      <use href="#sk-flower" transform="translate(42 445) rotate(10) scale(0.9)" />
+      <use href="#sk-flower" transform="translate(200 505) rotate(5) scale(0.8)" />
+      <use href="#sk-flower" transform="translate(72 600) rotate(-15) scale(0.75)" />
+
+      {/* buds */}
+      <g fill="#e88aa0">
+        <ellipse cx="268" cy="292" rx="6" ry="9" />
+        <ellipse cx="215" cy="382" rx="5" ry="8" />
+        <ellipse cx="152" cy="560" rx="5" ry="8" />
+        <ellipse cx="92" cy="442" rx="5" ry="8" />
+      </g>
+
+      {/* falling petals */}
+      <g fill="#f3b6c4" opacity="0.85">
+        <ellipse cx="200" cy="625" rx="5" ry="8" transform="rotate(30 200 625)" />
+        <ellipse cx="262" cy="685" rx="5" ry="8" transform="rotate(-20 262 685)" />
+        <ellipse cx="150" cy="725" rx="5" ry="8" transform="rotate(50 150 725)" />
+        <ellipse cx="300" cy="565" rx="4" ry="7" transform="rotate(15 300 565)" />
+        <ellipse cx="120" cy="300" rx="4" ry="7" transform="rotate(-30 120 300)" />
+      </g>
+    </svg>
+  );
+}

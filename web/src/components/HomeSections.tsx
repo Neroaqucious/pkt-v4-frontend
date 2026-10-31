@@ -9,6 +9,7 @@ import StatCounter from "./StatCounter";
 import { IMG } from "@/lib/images";
 import { news, newsCategoryLabel } from "@/lib/news";
 import { Squiggle } from "./Decor";
+import { SakuraBranch } from "./Decor";
 
 function SectionHeading({
   title,
@@ -155,30 +156,34 @@ export function Courses() {
     { icon: "🛎", k: 3 },
   ];
   return (
-    <Section id="courses" tone="white">
-      <SectionHeading eyebrow="COURSES" title={t("courses.title")} sub={t("courses.sub")} />
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {courses.map((c, i) => (
-          <Reveal key={c.k} delay={i * 90}>
-            <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-6 transition-all hover:-translate-y-1 hover:border-brand hover:shadow-md">
-              <span className="text-3xl">{c.icon}</span>
-              <h3 className="mt-4 text-xl font-bold text-ink">
-                {t(`courses.${c.k}.t`)}
-              </h3>
-              <p className="mt-2 flex-1 text-sm text-muted">
-                {t(`courses.${c.k}.d`)}
-              </p>
-              <a
-                href="#contact"
-                className="mt-4 text-sm font-bold text-brand hover:underline"
-              >
-                {t("nav.apply")} →
-              </a>
-            </div>
-          </Reveal>
-        ))}
+    <section id="courses" className="relative w-full overflow-hidden bg-white">
+      {/* sakura branch watermark (left side) */}
+      <SakuraBranch className="pointer-events-none absolute left-0 top-0 h-full w-auto opacity-30" />
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <SectionHeading eyebrow="COURSES" title={t("courses.title")} sub={t("courses.sub")} />
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {courses.map((c, i) => (
+            <Reveal key={c.k} delay={i * 90}>
+              <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-6 transition-all hover:-translate-y-1 hover:border-brand hover:shadow-md">
+                <span className="text-3xl">{c.icon}</span>
+                <h3 className="mt-4 text-xl font-bold text-ink">
+                  {t(`courses.${c.k}.t`)}
+                </h3>
+                <p className="mt-2 flex-1 text-sm text-muted">
+                  {t(`courses.${c.k}.d`)}
+                </p>
+                <a
+                  href="#contact"
+                  className="mt-4 text-sm font-bold text-brand hover:underline"
+                >
+                  {t("nav.apply")} →
+                </a>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
