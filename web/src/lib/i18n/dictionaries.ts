@@ -61,6 +61,17 @@ export const dictionaries: Record<Lang, Dict> = {
     "courses.3.t": "သီးသန့်ကျွမ်းကျင်",
     "courses.3.d": "စောင့်ရှောက် / ဟိုတယ် / စားသောက် / အစားအစာ",
 
+    "courses.open.title": "ယခုဖွင့်ထားသော သင်တန်းများ",
+    "courses.open.sub": "အောက်ပါ သင်တန်းများကို ယခု လျှောက်ထားနိုင်ပါသည်",
+    "courses.open.all": "အားလုံး",
+    "courses.open.start": "စတင်မည့်ရက်",
+    "courses.open.duration": "ကြာချိန်",
+    "courses.open.schedule": "အချိန်ဇယား",
+    "courses.open.fee": "သင်တန်းကြေး",
+    "courses.open.status.open": "ဖွင့်နေသည်",
+    "courses.open.status.full": "လူပြည့်နေသည်",
+    "courses.open.status.soon": "မကြာမီဖွင့်မည်",
+
     "stories.title": "အောင်မြင်မှုပုံပြင်များ",
     "stories.quote":
       "ကျွန်တော် N4 ပြီးပြီး ဂျပန်ကို ရောက်ခဲ့ပါတယ်။ PKT ရဲ့ ပံ့ပိုးမှုကြောင့် အိပ်မက်တွေ တကယ်ဖြစ်လာခဲ့ပါတယ်။",
@@ -213,6 +224,17 @@ export const dictionaries: Record<Lang, Dict> = {
     "courses.3.t": "特定技能",
     "courses.3.d": "介護 / 宿泊 / 外食 / 食品",
 
+    "courses.open.title": "開講中のコース",
+    "courses.open.sub": "以下のコースにお申し込みいただけます",
+    "courses.open.all": "すべて",
+    "courses.open.start": "開講日",
+    "courses.open.duration": "期間",
+    "courses.open.schedule": "スケジュール",
+    "courses.open.fee": "費用",
+    "courses.open.status.open": "開講中",
+    "courses.open.status.full": "満席",
+    "courses.open.status.soon": "開講予定",
+
     "stories.title": "卒業生の声",
     "stories.quote":
       "N4を取得して日本に来ました。PKTのサポートのおかげで夢が実現しました。",
@@ -364,6 +386,17 @@ export const dictionaries: Record<Lang, Dict> = {
     "courses.2.d": "Java / Python / Web · Engineer visa",
     "courses.3.t": "Specified Skills",
     "courses.3.d": "Care / Hotel / Food / Manufacturing",
+
+    "courses.open.title": "Open Courses",
+    "courses.open.sub": "You can apply for the following courses now",
+    "courses.open.all": "All",
+    "courses.open.start": "Start date",
+    "courses.open.duration": "Duration",
+    "courses.open.schedule": "Schedule",
+    "courses.open.fee": "Fee",
+    "courses.open.status.open": "Open",
+    "courses.open.status.full": "Full",
+    "courses.open.status.soon": "Opening soon",
 
     "stories.title": "Success Stories",
     "stories.quote":

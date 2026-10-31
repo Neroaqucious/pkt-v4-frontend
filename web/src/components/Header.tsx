@@ -8,6 +8,7 @@ import LanguageSwitch from "./LanguageSwitch";
 const NAV = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
+  { key: "courses", href: "/courses" },
   { key: "services", href: "/services" },
   { key: "news", href: "/news" },
   { key: "gallery", href: "/gallery" },
@@ -41,9 +42,9 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">{links}</nav>
+        <nav className="hidden items-center gap-5 xl:flex">{links}</nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <LanguageSwitch />
           <Link
             href="/login"
@@ -60,7 +61,7 @@ export default function Header() {
         </div>
 
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-md border border-line lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-md border border-line xl:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
         >
@@ -83,7 +84,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-line bg-white px-4 py-4 lg:hidden">
+        <div className="border-t border-line bg-white px-4 py-4 xl:hidden">
           <div className="flex flex-col gap-4">
             {links}
             <LanguageSwitch />
