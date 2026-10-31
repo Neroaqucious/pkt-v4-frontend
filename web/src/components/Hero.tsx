@@ -68,11 +68,40 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-cream to-gold-tint">
-      {/* soft blobs + dot grid */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold/25 blur-3xl" />
-      <div className="pointer-events-none absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-brand/10 blur-3xl" />
-      <div className="dot-grid pointer-events-none absolute left-8 top-24 hidden h-40 w-40 opacity-40 lg:block" />
+    <section className="relative w-full overflow-hidden bg-cream">
+      {/* Seigaiha (青海波) Japanese wave — watermark background */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="seigaiha"
+            width="80"
+            height="80"
+            patternUnits="userSpaceOnUse"
+          >
+            <g fill="none" stroke="#d9d5ce" strokeWidth="1.2" opacity="0.6">
+              <path d="M0 40 A40 40 0 0 1 80 40" />
+              <path d="M10 40 A30 30 0 0 1 70 40" />
+              <path d="M20 40 A20 20 0 0 1 60 40" />
+              <path d="M30 40 A10 10 0 0 1 50 40" />
+              <path d="M-40 80 A40 40 0 0 1 40 80" />
+              <path d="M-30 80 A30 30 0 0 1 30 80" />
+              <path d="M-20 80 A20 20 0 0 1 20 80" />
+              <path d="M-10 80 A10 10 0 0 1 10 80" />
+              <path d="M40 80 A40 40 0 0 1 120 80" />
+              <path d="M50 80 A30 30 0 0 1 110 80" />
+              <path d="M60 80 A20 20 0 0 1 100 80" />
+              <path d="M70 80 A10 10 0 0 1 90 80" />
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#seigaiha)" />
+      </svg>
+
+      {/* subtle warmth */}
+      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold/15 blur-3xl" />
 
       <FlightTrail className="pointer-events-none absolute inset-0 h-full w-full" />
 
