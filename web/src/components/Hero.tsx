@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import StatCounter from "./StatCounter";
 import { Fuji } from "./Motifs";
-import { FlightPath } from "./Decor";
+import FlightScene from "./FlightScene";
 import { IMG } from "@/lib/images";
 
 function Stat({
@@ -70,8 +70,8 @@ export default function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-cream to-gold-tint">
-      {/* Mt. Fuji watermark */}
-      <Fuji className="pointer-events-none absolute -bottom-6 left-1/2 w-[85%] max-w-[820px] -translate-x-1/2 text-ink/[0.05]" />
+      {/* Mt. Fuji watermark (top-right) */}
+      <Fuji className="pointer-events-none absolute -top-4 right-0 w-[48%] max-w-[560px] text-ink/[0.07]" />
 
       {/* soft blobs + dot grid */}
       <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold/25 blur-3xl" />
@@ -81,12 +81,10 @@ export default function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:px-8">
         {/* Left — text */}
         <div>
-          <div className="flex items-start justify-between gap-4">
-            <p className="animate-fade-up font-ui text-sm font-bold uppercase tracking-[0.2em] text-brand">
-              {t("hero.eyebrow")}
-            </p>
-            <FlightPath className="hidden h-16 w-32 shrink-0 text-brand/50 sm:block" />
-          </div>
+          <FlightScene className="mb-2 h-24 w-full max-w-lg text-brand/45" />
+          <p className="animate-fade-up font-ui text-sm font-bold uppercase tracking-[0.2em] text-brand">
+            {t("hero.eyebrow")}
+          </p>
 
           <h1
             className="animate-fade-up mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl"
