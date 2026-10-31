@@ -77,14 +77,14 @@ export default function FlightTrail({
         const dot = document.createElementNS(SVG_NS, "circle");
         dot.setAttribute("cx", String(x));
         dot.setAttribute("cy", String(y));
-        dot.setAttribute("r", "2.4");
-        dot.setAttribute("fill", "#c41e24");
-        dot.setAttribute("opacity", "0.5");
+        dot.setAttribute("r", "2.1");
+        dot.setAttribute("fill", "#8b9099");
+        dot.setAttribute("opacity", "0.55");
         trailContainer.appendChild(dot);
         gsap.to(dot, {
           opacity: 0,
-          scale: 0.3,
-          duration: 1.8,
+          scale: 0.4,
+          duration: 2.8,
           ease: "power2.out",
           onComplete: () => dot.remove(),
         });
@@ -94,7 +94,7 @@ export default function FlightTrail({
       const startFlight = () => {
         if (!active) return;
         const pathD = generatePath();
-        const duration = 6 + Math.random() * 2;
+        const duration = 14 + Math.random() * 6;
         spawnTimer = window.setInterval(createFadingDot, 60);
         gsap.to(airplane, {
           duration,
@@ -144,7 +144,11 @@ export default function FlightTrail({
     >
       <g ref={trailRef} />
       <g ref={planeRef}>
-        <path d="M -12,-10 L 16,0 L -12,10 L -5,0 Z" fill="#c41e24" opacity="0.75" />
+        <path
+          d="M20 0L6 -2.5L3 -9L0.5 -9L0 -2.5L-12 -2.5L-14 -7L-16.5 -7L-15.5 -2L-19 -1L-19 1L-15.5 2L-16.5 7L-14 7L-12 2.5L0 2.5L0.5 9L3 9L6 2.5Z"
+          fill="#6b7280"
+          opacity="0.5"
+        />
       </g>
     </svg>
   );
