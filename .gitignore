@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+build/
+
+# env
+.env*
+
+# logs
+*.log
+
+# misc
+.vercel

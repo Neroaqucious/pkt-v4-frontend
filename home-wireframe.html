@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PKT Myanmar — Home Page Wireframe (Design v2)</title>
+<style>
+  :root{
+    --navy:#0f1c33; --gold:#e8a33d; --line:#94a3b8; --box:#e2e8f0; --muted:#64748b;
+    --ink:#1e293b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Segoe UI','Noto Sans Myanmar',sans-serif;background:#eef2f7;color:var(--ink);padding-bottom:120px}
+  .note{max-width:1000px;margin:0 auto;padding:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px}
+  .note .pal{display:flex;align-items:center;gap:6px;font-size:12px}
+  .swatch{width:18px;height:18px;border-radius:5px;display:inline-block;border:1px solid #cbd5e1}
+  .wrap{max-width:1000px;margin:16px auto}
+  .page-title{background:var(--navy);color:#fff;border-radius:12px;padding:16px 20px;margin-bottom:14px}
+  .page-title h1{font-size:18px}
+  .page-title p{font-size:12.5px;color:#cbd5e1;margin-top:4px}
+  /* section */
+  .sec{background:#fff;border:2px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+  .sec-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #e2e8f0}
+  .sec-no{background:var(--navy);color:#fff;border-radius:7px;font-size:11px;font-weight:800;padding:3px 8px}
+  .sec-title{font-weight:800;font-size:14.5px}
+  .sec-tag{margin-left:auto;font-size:10.5px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  .sec-body{padding:14px 16px}
+  .annote{margin-top:12px;background:#f8fafc;border-left:3px solid var(--gold);padding:9px 12px;border-radius:0 8px 8px 0;font-size:12px;color:#475569;line-height:1.55}
+  .annote b{color:var(--navy)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .col{flex:1;min-width:130px}
+  .box{background:var(--box);border:1px dashed var(--line);border-radius:8px;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-size:12px;color:#334155}
+  .box.img{background:#f1f5f9;min-height:80px;color:#64748b;border-style:dashed}
+  .box.navy{background:var(--navy);color:#fff;border-style:solid;border-color:var(--navy)}
+  .box.gold{background:#fbe9cd;border:2px solid var(--gold);color:#7c4a03;font-weight:700}
+  .box.white{border:2px solid var(--line)}
+  .small{min-height:34px;font-size:11px}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .hero-split{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+  @media(max-width:640px){.hero-split{grid-template-columns:1fr}}
+  .steps{display:flex;gap:0;align-items:stretch}
+  .step{flex:1;position:relative;text-align:center;padding:10px 6px;background:var(--box);border:1px dashed var(--line);border-radius:10px}
+  .step + .step{margin-left:18px}
+  .step::before{content:'';position:absolute;top:50%;left:-18px;width:18px;height:3px;background:var(--gold)}
+  .chip{background:#fff;border:1px solid var(--gold);color:#7c4a03;border-radius:20px;padding:3px 10px;font-size:10.5px;font-weight:700;position:absolute;bottom:-12px;right:8px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .floating{position:fixed;bottom:22px;right:22px;background:var(--gold);color:#fff;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:99}
+  .badge{position:absolute;top:-4px;right:-4px;background:#e11d48;color:#fff;font-size:10px;border-radius:10px;padding:1px 6px}
+  ul.pt{margin:6px 0 0 16px;font-size:11.5px;color:#475569}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="note">
+    <div class="pal"><span class="swatch" style="background:#c8102e"></span> အနီ Red (main)</div>
+    <div class="pal"><span class="swatch" style="background:#c9a227"></span> ရွှေ Gold (accent)</div>
+    <div class="pal"><span class="swatch" style="background:#fff;border:1px solid #ccc"></span> အဖြူ White (bg)</div>
+    <div style="font-size:12px;color:var(--muted);margin-left:auto">Design v2 — Red + Gold · White ရှင်းရှင်း · Japan motifs (Sakura/Fuji/လှိုင်း)</div>
+  </div>
+
+  <div class="page-title">
+    <h1>PKT Myanmar — Home Page Wireframe (အသေးစိတ်)</h1>
+    <p>Concept: "ဂျပန်ကို သွားမယ့် ခရီး (Journey)" · Red + Gold · White ရှင်းရှင်း · Japan motifs · Mobile-first</p>
+  </div>
+
+  <!-- S0 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S0</span><span class="sec-title">Top Utility Bar</span><span class="sec-tag">36px · thin</span></div>
+    <div class="sec-body">
+      <div class="row">
+        <div class="box gold small" style="flex:0 0 auto">[မြန်မာ ▾ | 日本語]</div>
+        <div class="box small" style="flex:0 0 auto">📞 09-xxx</div>
+        <div class="box small" style="flex:0 0 auto">[FB]</div>
+        <div class="box small" style="flex:0 0 auto">[TikTok]</div>
+        <div class="box small" style="flex:0 0 auto;margin-left:auto">[အကောင့်ဝင်ရန် / ログイン]</div>
+      </div>
+      <div class="annote"><b>ရည်ရွယ်ချက်:</b> ဘာသာစကား toggle နဲ့ login က အမြဲမြင်နိုင်ရမယ်။ <b>MM copy:</b> အကောင့်ဝင်ရန် · <b>JP copy:</b> ログイン · <b>Interaction:</b> toggle လုပ်ရင် site တစ်ခုလုံး ဘာသာပြောင်း (i18n)။ Scroll လုပ်ရင် ဒီ bar ကို ဖျောက်လိုက်နိုင် (Header ကပဲ sticky ကျန်)။</div>
+    </div>
+  </div>
+
+  <!-- S1 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S1</span><span class="sec-title">Header</span><span class="sec-tag">sticky · 64px</span></div>
+    <div class="sec-body">
+      <div class="row">
+        <div class="box navy small" style="flex:0 0 auto">PKT MYANMAR (logo)</div>
+        <div class="box small">ပင်မ</div><div class="box small">သင်တန်းများ</div><div class="box small">ပို့ဆောင်ရေး</div><div class="box small">သတင်း</div><div class="box small">ဆက်သွယ်</div>
+        <div class="box gold small" style="flex:0 0 auto;margin-left:auto">[လျှောက်ထားရန်]</div>
+      </div>
+      <div class="annote"><b>JP helper:</b> ホーム / コース / 送り出し / ニュース / お問い合わせ · CTA = 申し込む။ <b>Interaction:</b> scroll → white bg + shadow; nav hover → amber underline animate; mobile → hamburger drawer။</div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S2</span><span class="sec-title">Hero — Split 2-column</span><span class="sec-tag">အသစ် · မူရင်းနဲ့ အဓိကကွာ</span></div>
+    <div class="sec-body">
+      <div class="hero-split">
+        <div>
+          <div class="box small" style="color:#7c4a03;border-color:var(--gold)">eyebrow: PKT EDUCATION CENTER</div>
+          <div class="box" style="min-height:70px;font-weight:800;font-size:15px">H1: "ဂျပန်ကို သွားမယ့် မင်းရဲ့ ခရီး ဒီကနေ စမယ်"</div>
+          <div class="box small" style="margin-top:6px">JP sub: "ミャンマーと日本の未来を、教育でつなぐ。"</div>
+          <div class="box img" style="min-height:40px;margin-top:6px">body (1–2 lines)</div>
+          <div class="row" style="margin-top:6px">
+            <div class="box gold small col">[လျှောက်ထားရန်]</div>
+            <div class="box white small col">[သင်တန်းများ ▾]</div>
+          </div>
+          <div class="row" style="margin-top:6px">
+            <div class="box small col">11 ကျောင်း</div><div class="box small col">10+ နှစ်</div><div class="box small col">1,555 ဦး</div>
+          </div>
+        </div>
+        <div style="position:relative">
+          <div class="box img" style="min-height:180px">main photo (ကျောင်းသား/ပို့ဆောင်ပွဲ)</div>
+          <div class="chip">✓ အင်တာဗျူးရက် ရနိုင်</div>
+        </div>
+      </div>
+      <div class="annote"><b>မူရင်းနဲ့ ကွာခြင်း:</b> full-bg image မဟုတ်ဘဲ split layout။ <b>Interaction:</b> load မှာ headline line-by-line fade-up; image parallax; floating chip က live availability ပြ။ <b>Data:</b> trust numbers live count-up (Supabase/WP)။ <b>Note:</b> MM headline + JP sub နှစ်ခုလုံး တစ်ပြိုင်နက်ပြ → fusion ပေါ်လွင်။</div>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S3</span><span class="sec-title">Journey Path — 4 steps</span><span class="sec-tag">အသစ်</span></div>
+    <div class="sec-body">
+      <div class="steps">
+        <div class="step">① သင်ယူ<br><small>学ぶ · ကျောင်း 11 ကျောင်း</small></div>
+        <div class="step">② စာမေးပွဲ<br><small>試験 · JLPT/NAT</small></div>
+        <div class="step">③ ပို့ဆောင်<br><small>送り出し · COE→Visa</small></div>
+        <div class="step">④ ဂျပန်ဘဝ<br><small>日本生活 · 24/7</small></div>
+      </div>
+      <div class="annote"><b>ရည်ရွယ်ချက်:</b> ကျောင်းသားရဲ့ ခရီးလမ်းတစ်ခုလုံးကို တစ်ချက်ကြည့်နဲ့ နားလည်စေ။ <b>Interaction:</b> click step → expand detail accordion; connector line animated (gold). Mobile → vertical stack။ <b>မူရင်း site မှာမရှိတဲ့ section။</b></div>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S4</span><span class="sec-title">Why PKT — 3 differentiators</span><span class="sec-tag"></span></div>
+    <div class="sec-body">
+      <div class="grid3">
+        <div class="box">🎓 ကိုယ်ပိုင်ကျောင်း 11 ခု<br><small>直営11校</small></div>
+        <div class="box">💰 ပွင့်လင်းသော ကုန်ကျစရိတ်<br><small>透明な費用</small></div>
+        <div class="box">🤝 ဂျပန်တွင် 24/7 ပံ့ပိုး<br><small>日本での24時間サポート</small></div>
+      </div>
+      <div class="annote"><b>ရည်ရွယ်ချက်:</b> "ဘာလို့ PKT လဲ" ကို ချက်ချင်းဖြေ။ icon က amber accent။</div>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S5</span><span class="sec-title">Courses — 3 cards</span><span class="sec-tag"></span></div>
+    <div class="sec-body">
+      <div class="grid3">
+        <div class="box">🇯🇵 ဂျပန်စာ<br><small>N5→N2 · 5လ N4ပြီး</small><br><span style="color:#7c4a03">[အသေးစိတ် →]</span></div>
+        <div class="box">💻 IT အင်ဂျင်နီယာ<br><small>Java/Python · 技人国</small><br><span style="color:#7c4a03">[အသေးစိတ် →]</span></div>
+        <div class="box">🛎 သီးသန့်ကျွမ်းကျင်<br><small>介護/宿泊/外食 · 特定技能</small><br><span style="color:#7c4a03">[အသေးစိတ် →]</span></div>
+      </div>
+      <div class="annote"><b>Interaction:</b> card hover → lift + amber border; click → /services။ <b>Data:</b> course info WordPress (content) မှ sync။</div>
+    </div>
+  </div>
+
+  <!-- S6 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S6</span><span class="sec-title">Live Stats + Media</span><span class="sec-tag"></span></div>
+    <div class="sec-body">
+      <div class="row">
+        <div class="box col"><b>11</b><br><small>ကျောင်း</small></div>
+        <div class="box col"><b>1,555</b><br><small>ပို့ဆောင်ပြီး</small></div>
+        <div class="box col"><b>10+</b><br><small>နှစ်</small></div>
+        <div class="box col"><b>60+</b><br><small>ဝန်ထမ်း</small></div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div class="box img col">photo</div><div class="box img col">photo</div><div class="box img col">photo</div><div class="box img col">photo</div>
+      </div>
+      <div class="annote"><b>Interaction:</b> count-up on whileInView (Framer Motion); photo strip auto-scroll (secondary, subtle)။</div>
+    </div>
+  </div>
+
+  <!-- S7 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S7</span><span class="sec-title">Success Stories — Testimonials</span><span class="sec-tag">အသစ်</span></div>
+    <div class="sec-body">
+      <div class="box img" style="min-height:100px">
+        [ကျောင်းသား photo]  "ကျွန်တော် N4 ပြီးပြီး ဂျပန်ကို ရောက်ခဲ့တယ်…" — ကိုမင်းခန့်, တက္ကသိုလ်ဝင်<br>
+        ‹  ○ ○ ○  ›  carousel
+      </div>
+      <div class="annote"><b>ရည်ရွယ်ချက်:</b> ကျောင်းသားရဲ့ တကယ့် voice နဲ့ ယုံကြည်မှုတည်ဆောက်။ <b>မူရင်းမှာမရှိ။</b> <b>Interaction:</b> auto + manual carousel (Swiper)။</div>
+    </div>
+  </div>
+
+  <!-- S8 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S8</span><span class="sec-title">News — compact list</span><span class="sec-tag">4-card grid မဟုတ်</span></div>
+    <div class="sec-body">
+      <div class="box small" style="justify-content:space-between">သတင်း / ニュース <span style="margin-left:auto">[အားလုံး →]</span></div>
+      <ul class="pt">
+        <li>2026.03.06 · လှုပ်ရှားမှု — သာဝန်းကြီးကျောင်း ဂျပန်စာသင်တန်း →</li>
+        <li>2026.03.05 · အသိပေးချက် — PKT သာဝန်းကြီးကျောင်း ဖွင့်လှစ် →</li>
+        <li>2026.03.04 · ပွဲ — ဒေသခံများ လာရောက်ခဲ့ →</li>
+      </ul>
+      <div class="annote"><b>မူရင်းနဲ့ ကွာခြင်း:</b> card grid အစား list layout — သေးငယ်၊ scan ရလွယ်၊ home မှာ နေရာအများကြီး မယူ။</div>
+    </div>
+  </div>
+
+  <!-- S9 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S9</span><span class="sec-title">CTA Banner — full-width</span><span class="sec-tag">အသစ်</span></div>
+    <div class="sec-body">
+      <div class="box navy" style="min-height:90px;flex-direction:column;gap:8px">
+        <b>"မင်းရဲ့ အိပ်မက်ကို ဒီနေ့ စတင်လိုက်ပါ"</b>
+        <span style="color:#cbd5e1">～夢を今日から始めよう～</span>
+        <span>[အခမဲ့ ဆွေးနွေးရန်] [လျှောက်ထားရန်]</span>
+      </div>
+      <div class="annote"><b>ရည်ရွယ်ချက်:</b> emotional climax — navy bg + gold button (ဒါမှမဟုတ် gold bg + white button)။ <b>မူရင်းမှာမရှိ။</b></div>
+    </div>
+  </div>
+
+  <!-- S10 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S10</span><span class="sec-title">Contact — お問い合わせ</span><span class="sec-tag"></span></div>
+    <div class="sec-body">
+      <div class="row"><div class="box small col">အမည်*</div><div class="box small col">ဖုန်း</div></div>
+      <div class="row"><div class="box small col">Email*</div><div class="box small col">အမျိုးအစား [လျှောက်လွှာ ▾]</div></div>
+      <div class="box img" style="margin-top:8px">စာသား*</div>
+      <div class="box small" style="margin-top:8px">☐ ကိုယ်ရေးအချက်အလက် မူဝါဒကို သဘောတူပါသည် &nbsp; [ပေးပို့မည်]</div>
+      <div class="annote"><b>MM labels + JP helper placeholder။</b> Validate (RHF+Zod) → loading → success toast → Supabase inquiries + email notify။</div>
+    </div>
+  </div>
+
+  <!-- S11 -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-no">S11</span><span class="sec-title">Footer</span><span class="sec-tag"></span></div>
+    <div class="sec-body">
+      <div class="row">
+        <div class="col"><div class="box navy small">PKT MYANMAR<br><small>မြန်မာနဲ့ဂျပန်ကို ပညာရေးနဲ့ချိတ်ဆက်</small></div></div>
+        <div class="col"><div class="box small">ဂျပန်ကုမ္ပဏီ<br><small>株式会社ピーケーティー</small></div></div>
+        <div class="col"><div class="box small">မြန်မာကုမ္ပဏီ<br><small>May Myanmar Lin</small></div></div>
+        <div class="col"><div class="box small">ကျောင်းများ (11)</div></div>
+        <div class="col"><div class="box small">SNS [FB][TikTok]</div></div>
+      </div>
+      <div class="box small" style="margin-top:8px">© 2026 PKT · [ကိုယ်ရေးမူဝါဒ] · [မြန်မာ | 日本語]</div>
+    </div>
+  </div>
+</div>
+
+<div class="floating">💬<span class="badge">2</span></div>
+
+</body>
+</html>

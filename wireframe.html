@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PKT Myanmar — All Pages Wireframe (3-Language)</title>
+<style>
+  :root{--red:#c41e24; --red-dark:#9b1219; --red-tint:#fdf2f2; --gold:#d4a843; --gold-tint:#fef9eb; --cream:#faf8f5; --darksec:#111827; --line:#cbd5e1; --box:#f1f5f9; --muted:#6b7280; --ink:#1a1a1a; --pink:#f6d7de}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Segoe UI','Noto Sans Myanmar','Noto Sans JP',sans-serif;background:#ffffff;color:var(--ink);padding-bottom:120px}
+  .top{position:sticky;top:0;background:#ffffff;color:var(--ink);z-index:60;padding:10px 14px;border-bottom:1px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .top .row1{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .brand{font-weight:800;letter-spacing:.3px}
+  .brand span{color:var(--red)}
+  .lang{margin-left:auto;display:flex;gap:4px;background:#f1f5f9;padding:4px;border-radius:8px}
+  .lang button{background:transparent;border:none;color:#475569;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+  .lang button.active{background:var(--red);color:#fff}
+  .row2{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+  .ptab{background:#f8fafc;color:#475569;border:1px solid #e5e7eb;padding:5px 10px;border-radius:7px;cursor:pointer;font-size:12px}
+  .ptab.active{background:var(--red);color:#fff;font-weight:700;border-color:var(--red)}
+  .wrap{width:100%;margin:0}
+  .hint{width:100%;margin:10px 0 0;padding:0 20px;font-size:12px;color:var(--muted)}
+  .page{display:none}
+  .page.active{display:block}
+  /* section */
+  .sec{width:100%;background:#fff;border:none;border-radius:0;margin:0;overflow:hidden}
+  /* pktjapan.jp top page block အတိုင်း: cream (#faf8f5) ↔ white (#fff) အလှည့်ကျ */
+  .sec:nth-child(even){background:var(--cream)}
+  .sec--dark{background:var(--darksec)!important;color:#fff}
+  .sec--dark .sec-title{color:#fff}
+  .sec--dark .sec-head{border-bottom-color:#1f2937}
+  .sec-head{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid #eef0f3}
+  .sec-no{background:var(--red);color:#fff;border-radius:7px;font-size:10.5px;font-weight:800;padding:2px 8px}
+  .sec-title{font-weight:800;font-size:13.5px}
+  .sec-tag{margin-left:auto;font-size:10px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .sec-body{padding:16px 20px}
+  .annote{margin-top:10px;background:#f8fafc;border-left:3px solid var(--gold);padding:8px 11px;border-radius:0 8px 8px 0;font-size:11.5px;color:#475569;line-height:1.5}
+  .annote b{color:var(--red)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .col{flex:1;min-width:120px}
+  .box{background:var(--box);border:1px dashed var(--line);border-radius:8px;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-size:11.5px;color:#334155}
+  .box.img{background:#f1f5f9;min-height:74px;color:#64748b;border-style:dashed}
+  .box.red{background:var(--red);color:#fff;border-style:solid;border-color:var(--red)}
+  .box.gold{background:#fbe9cd;border:2px solid var(--gold);color:#7c4a03;font-weight:700}
+  .box.white{border:2px solid var(--line)}
+  .small{min-height:32px;font-size:10.5px}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+  .hero-split{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+  @media(max-width:640px){.hero-split{grid-template-columns:1fr}}
+  .steps{display:flex;gap:18px}
+  .steps .step{flex:1;text-align:center;padding:10px 6px;background:var(--box);border:1px dashed var(--line);border-radius:10px;position:relative}
+  .steps .step::after{content:'—';position:absolute;right:-16px;top:50%;color:var(--gold);font-weight:800}
+  .steps .step:last-child::after{content:''}
+  @media(max-width:640px){.steps{flex-direction:column;gap:8px}.steps .step::after{display:none}}
+  .timeline{border-left:3px solid var(--line);padding-left:12px}
+  .dot{position:relative;margin-bottom:8px;font-size:12px}
+  .dot::before{content:'';position:absolute;left:-18px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+  .sidebar{display:flex;gap:12px}
+  .side{width:170px;flex-shrink:0}
+  .main{flex:1}
+  .chatmock{background:#0f172a;color:#fff;border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:7px}
+  .msg{max-width:75%;padding:6px 9px;border-radius:9px;font-size:11.5px}
+  .msg.in{background:#334155;align-self:flex-start}
+  .msg.out{background:var(--gold);color:#06202a;align-self:flex-end}
+  .floating{position:fixed;bottom:20px;right:20px;background:var(--gold);color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:99}
+  .badge{position:absolute;top:-4px;right:-4px;background:#e11d48;color:#fff;font-size:10px;border-radius:10px;padding:1px 6px}
+  .langbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;padding:0 20px}
+  .langbar .lb{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700}
+  ul.pt{margin:6px 0 0 16px;font-size:11px;color:#475569;line-height:1.6}
+  .palette{width:100%;margin:10px 0 0;padding:10px 20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:var(--gold-tint);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);font-size:12px}
+  .palette .sw{width:16px;height:16px;border-radius:5px;display:inline-block;border:1px solid #cbd5e1;vertical-align:-2px;margin-right:5px}
+  .fuji{position:absolute;right:12px;bottom:0;font-size:56px;opacity:.1;pointer-events:none}
+  .wave{height:24px;background-image:radial-gradient(circle at 20px 0, var(--gold) 0 8px, transparent 9px);background-size:40px 24px;opacity:.3}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="row1">
+    <div class="brand">PKT <span>MYANMAR</span> · Wireframe</div>
+    <div class="lang" id="langSwitch">
+      <button data-lang="my" class="active">မြန်မာ</button>
+      <button data-lang="ja">日本語</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+  <div class="row2" id="tabs">
+    <button class="ptab active" data-p="home">Home</button>
+    <button class="ptab" data-p="about">About</button>
+    <button class="ptab" data-p="services">Services</button>
+    <button class="ptab" data-p="news">News</button>
+    <button class="ptab" data-p="newsd">News detail</button>
+    <button class="ptab" data-p="gallery">Gallery</button>
+    <button class="ptab" data-p="contact">Contact</button>
+    <button class="ptab" data-p="login">Login</button>
+    <button class="ptab" data-p="register">Register</button>
+    <button class="ptab" data-p="dash">Dashboard</button>
+    <button class="ptab" data-p="app">Application</button>
+    <button class="ptab" data-p="docs">Documents</button>
+    <button class="ptab" data-p="msg">Messages</button>
+    <button class="ptab" data-p="profile">Profile</button>
+  </div>
+</div>
+
+<div class="hint">🌐 Language switch (အပေါ်ညာဘက်) နှိပ်ကြည့်ပါ — nav &amp; hero စာသားတွေ မြန်မာ/ဂျပန်/English ပြောင်းပါမယ်။ ဘာသာတစ်မျိုးတည်းပဲ ပြတာပါ (ရောမထား)။</div>
+
+<div class="palette">
+  <span><span class="sw" style="background:#c41e24"></span>အနီ Red #C41E24</span>
+  <span><span class="sw" style="background:#d4a843"></span>ရွှေ Gold #D4A843</span>
+  <span><span class="sw" style="background:#faf8f5;border:1px solid #ddd"></span>Block: cream #FAF8F5</span>
+  <span><span class="sw" style="background:#ffffff;border:1px solid #ddd"></span>Block: white #FFF</span>
+  <span><span class="sw" style="background:#111827"></span>Block: dark #111827 (gallery)</span>
+  <span style="margin-left:auto">pktjapan.jp top page block အရောင်အတိုင်း — cream ↔ white အလှည့်ကျ + gallery dark</span>
+</div>
+
+<div class="wrap">
+
+<!-- ============ HOME ============ -->
+<div class="page active" id="p-home">
+  <div class="langbar"><span class="lb" data-i18n="page.home"></span></div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S0</span><span class="sec-title" data-i18n="topbar"></span><span class="sec-tag">36px</span></div>
+    <div class="sec-body">
+      <div class="row">
+        <div class="box gold small" style="flex:0 0 auto">🌐 <span data-i18n="nav.lang"></span></div>
+        <div class="box small" style="flex:0 0 auto">📞 09-xxx</div>
+        <div class="box small" style="flex:0 0 auto">[FB]</div>
+        <div class="box small" style="flex:0 0 auto">[TikTok]</div>
+        <div class="box small" style="flex:0 0 auto;margin-left:auto" data-i18n="nav.login"></div>
+      </div>
+      <div class="annote"><b>3-language switch ဒီမှာ။</b> ရွေးလိုက်ရင် page တစ်ခုလုံး ဘာသာတစ်မျိုးတည်းနဲ့ ပြောင်း။ localStorage မှာ သိမ်း။</div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S1</span><span class="sec-title" data-i18n="header"></span><span class="sec-tag">sticky</span></div>
+    <div class="sec-body">
+      <div class="row">
+        <div class="box red small" style="flex:0 0 auto">PKT MYANMAR</div>
+        <div class="box small" data-i18n="nav.home"></div>
+        <div class="box small" data-i18n="nav.courses"></div>
+        <div class="box small" data-i18n="nav.sending"></div>
+        <div class="box small" data-i18n="nav.news"></div>
+        <div class="box small" data-i18n="nav.contact"></div>
+        <div class="box gold small" style="flex:0 0 auto;margin-left:auto" data-i18n="nav.apply"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S2</span><span class="sec-title" data-i18n="hero"></span><span class="sec-tag">split</span></div>
+    <div class="sec-body">
+      <div class="hero-split">
+        <div>
+          <div class="box small" style="color:#7c4a03;border-color:var(--gold)">PKT EDUCATION CENTER</div>
+          <div class="box" style="min-height:66px;font-weight:800;font-size:14px" data-i18n="hero.title"></div>
+          <div class="box small" style="margin-top:6px" data-i18n="hero.sub"></div>
+          <div class="row" style="margin-top:6px">
+            <div class="box gold small col" data-i18n="hero.cta1"></div>
+            <div class="box white small col" data-i18n="hero.cta2"></div>
+          </div>
+          <div class="row" style="margin-top:6px">
+            <div class="box small col">11 <span data-i18n="stat.schools"></span></div>
+            <div class="box small col">1,555 <span data-i18n="stat.sent"></span></div>
+            <div class="box small col">10+ <span data-i18n="stat.years"></span></div>
+          </div>
+        </div>
+        <div class="box img" style="min-height:180px;position:relative">main photo
+          <span class="fuji">🗻</span>
+        </div>
+      </div>
+      <div class="wave" style="margin-top:8px"></div>
+      <div class="annote"><b>Hero title + subtitle က ဘာသာတစ်မျိုးတည်းပဲ ပြတယ်</b> (ရောမထား)။ Language switch နှိပ်ရင် နှစ်ခုလုံး အတူပြောင်း။ <b>Japan motifs:</b> 🗻 Fuji + 🌊 လှိုင်း (Sakura က နမူနာရရင် ထည့်မယ်) — ဖျော့ဖျော့, white bg ရှင်းနေစေဖို့။</div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S3</span><span class="sec-title" data-i18n="sec.journey"></span><span class="sec-tag">အသစ်</span></div>
+    <div class="sec-body">
+      <div class="steps">
+        <div class="step" data-i18n="step.1"></div>
+        <div class="step" data-i18n="step.2"></div>
+        <div class="step" data-i18n="step.3"></div>
+        <div class="step" data-i18n="step.4"></div>
+      </div>
+      <div class="annote">ကျောင်းသားရဲ့ ခရီးလမ်း ၄ ဆင့်။ click → expand detail။</div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S4</span><span class="sec-title" data-i18n="sec.why"></span><span class="sec-tag"></span></div>
+    <div class="sec-body"><div class="grid3">
+      <div class="box">🎓 <span data-i18n="why.1"></span></div>
+      <div class="box">💰 <span data-i18n="why.2"></span></div>
+      <div class="box">🤝 <span data-i18n="why.3"></span></div>
+    </div></div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S5</span><span class="sec-title" data-i18n="sec.courses"></span><span class="sec-tag"></span></div>
+    <div class="sec-body"><div class="grid3">
+      <div class="box">🇯🇵 <span data-i18n="course.1"></span></div>
+      <div class="box">💻 <span data-i18n="course.2"></span></div>
+      <div class="box">🛎 <span data-i18n="course.3"></span></div>
+    </div></div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S6</span><span class="sec-title">Stats + Media</span><span class="sec-tag"></span></div>
+    <div class="sec-body"><div class="row">
+      <div class="box col"><b>11</b><br><span data-i18n="stat.schools"></span></div>
+      <div class="box col"><b>1,555</b><br><span data-i18n="stat.sent"></span></div>
+      <div class="box col"><b>10+</b><br><span data-i18n="stat.years"></span></div>
+      <div class="box col"><b>60+</b><br><span data-i18n="stat.staff"></span></div>
+    </div><div class="row" style="margin-top:8px">
+      <div class="box img col">photo</div><div class="box img col">photo</div><div class="box img col">photo</div><div class="box img col">photo</div>
+    </div></div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S7</span><span class="sec-title" data-i18n="sec.stories"></span><span class="sec-tag">အသစ်</span></div>
+    <div class="sec-body"><div class="box img" style="min-height:90px">[photo] ကျောင်းသား voice — ‹ ○ ○ ○ ›</div></div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S8</span><span class="sec-title" data-i18n="sec.news"></span><span class="sec-tag">list</span></div>
+    <div class="sec-body"><ul class="pt">
+      <li>2026.03.06 · <span data-i18n="news.cat"></span> — သတင်းခေါင်းစဉ် →</li>
+      <li>2026.03.05 · <span data-i18n="news.cat2"></span> — သတင်းခေါင်းစဉ် →</li>
+      <li>2026.03.04 · <span data-i18n="news.cat3"></span> — သတင်းခေါင်းစဉ် →</li>
+    </ul></div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S9</span><span class="sec-title" data-i18n="cta.banner"></span><span class="sec-tag">အသစ်</span></div>
+    <div class="sec-body"><div class="box red" style="min-height:80px;flex-direction:column;gap:6px">
+      <b data-i18n="cta.text"></b><span data-i18n="cta.sub"></span>
+    </div></div>
+  </div>
+
+  <div class="sec"><div class="sec-head"><span class="sec-no">S10</span><span class="sec-title" data-i18n="sec.contact"></span><span class="sec-tag"></span></div>
+    <div class="sec-body">
+      <div class="row"><div class="box small col" data-i18n="form.name"></div><div class="box small col" data-i18n="form.phone"></div></div>
+      <div class="row"><div class="box small col" data-i18n="form.email"></div><div class="box small col" data-i18n="form.type"></div></div>
+      <div class="box img" style="margin-top:8px" data-i18n="form.msg"></div>
+      <div class="box small" style="margin-top:8px" data-i18n="form.consent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="page" id="p-about">
+  <div class="langbar"><span class="lb" data-i18n="page.about"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">A1</span><span class="sec-title">Page hero</span></div><div class="sec-body"><div class="box red img" data-i18n="about.hero"></div></div></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">A2</span><span class="sec-title">Founder message</span></div>
+    <div class="sec-body"><div class="row"><div class="box img col">Founder photo</div><div class="col"><div class="box img">ပုံပြင်</div><div class="row" style="margin-top:6px"><div class="box small">FB 190k+</div><div class="box small">TikTok 67k+</div></div></div></div></div>
+  </div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">A3</span><span class="sec-title">Philosophy</span></div><div class="sec-body"><div class="grid3"><div class="box">Value</div><div class="box">Intention</div><div class="box">Vision</div></div></div></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">A4</span><span class="sec-title">Our Story — Timeline</span></div>
+    <div class="sec-body"><div class="timeline">
+      <div class="dot">2010 · <span data-i18n="about.t1"></span></div>
+      <div class="dot">2013 · <span data-i18n="about.t2"></span></div>
+      <div class="dot">2018 · <span data-i18n="about.t3"></span></div>
+      <div class="dot">2022 · <span data-i18n="about.t4"></span></div>
+      <div class="dot">2025 · <span data-i18n="about.t5"></span></div>
+      <div class="dot">Now · <span data-i18n="about.t6"></span></div>
+    </div></div>
+  </div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">A5</span><span class="sec-title">Organization</span></div>
+    <div class="sec-body"><div class="row"><div class="box col">株式会社ピーケーティー (JP)</div><div class="box col">May Myanmar Lin (MM)</div></div><div class="box small" style="margin-top:6px">[PDF လက်မှတ်] [PDF လက်မှတ်]</div></div>
+  </div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">A6</span><span class="sec-title">School locations — 11 cards</span></div>
+    <div class="sec-body"><div class="grid3">
+      <div class="box img">school</div><div class="box img">school</div><div class="box img">school</div>
+      <div class="box img">school</div><div class="box img">school</div><div class="box img">school</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<div class="page" id="p-services">
+  <div class="langbar"><span class="lb" data-i18n="page.services"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">V1</span><span class="sec-title">Tab switcher</span></div>
+    <div class="sec-body"><div class="row"><div class="box gold col" data-i18n="svc.1"></div><div class="box col" data-i18n="svc.2"></div><div class="box col" data-i18n="svc.3"></div></div></div>
+  </div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">V2</span><span class="sec-title">Education — 3 courses</span></div>
+    <div class="sec-body"><div class="grid3"><div class="box img" data-i18n="course.1"></div><div class="box img" data-i18n="course.2"></div><div class="box img" data-i18n="course.3"></div></div></div>
+  </div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">V3</span><span class="sec-title">Sending process</span></div>
+    <div class="sec-body"><div class="row"><div class="box col">①</div><div class="box col">②</div><div class="box col">③</div></div></div>
+  </div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">V4</span><span class="sec-title">Support</span></div>
+    <div class="sec-body"><div class="row"><div class="box col">24/7</div><div class="box col">Career</div><div class="box col">Consulting</div></div></div>
+  </div>
+</div>
+
+<!-- ============ NEWS ============ -->
+<div class="page" id="p-news">
+  <div class="langbar"><span class="lb" data-i18n="page.news"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">N1</span><span class="sec-title">List + year filter</span></div>
+    <div class="sec-body"><div class="row"><span class="lb">2026</span><span class="lb">2025</span></div>
+    <ul class="pt"><li>2026.03.06 · သတင်း →</li><li>2026.03.05 · သတင်း →</li><li>2026.03.04 · သတင်း →</li><li>2026.03.03 · သတင်း →</li></ul></div>
+  </div>
+</div>
+
+<!-- ============ NEWS DETAIL ============ -->
+<div class="page" id="p-newsd">
+  <div class="langbar"><span class="lb" data-i18n="page.newsd"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">D1</span><span class="sec-title">News detail</span></div>
+    <div class="sec-body"><div class="box img">cover</div><div class="box small" style="margin-top:6px">date · category · title</div><div class="box img" style="margin-top:6px">body text</div><div class="row" style="margin-top:6px"><div class="box small">share</div><div class="box small">← back</div></div></div>
+  </div>
+</div>
+
+<!-- ============ GALLERY ============ -->
+<div class="page" id="p-gallery">
+  <div class="langbar"><span class="lb" data-i18n="page.gallery"></span></div>
+  <div class="sec sec--dark"><div class="sec-head"><span class="sec-no">G1</span><span class="sec-title">Gallery</span></div>
+    <div class="sec-body"><div class="row"><span class="lb">2026</span><span class="lb">2025</span></div>
+    <div class="box small" style="margin-top:6px">▼ 2026 MAR (4 photos)</div>
+    <div class="grid3" style="margin-top:6px"><div class="box img">p</div><div class="box img">p</div><div class="box img">p</div><div class="box img">p</div><div class="box img">p</div><div class="box img">p</div></div>
+    <div class="box img" style="margin-top:6px">Lightbox modal</div></div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" id="p-contact">
+  <div class="langbar"><span class="lb" data-i18n="page.contact"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">C1</span><span class="sec-title">Contact</span></div>
+    <div class="sec-body"><div class="row">
+      <div class="col"><div class="box small" data-i18n="form.name"></div><div class="box small" data-i18n="form.phone"></div><div class="box small" data-i18n="form.email"></div><div class="box small" data-i18n="form.type"></div><div class="box img" data-i18n="form.msg"></div><div class="box small" data-i18n="form.consent"></div></div>
+      <div class="col"><div class="box img">Google Map</div><div class="box small">ရုံးအချက်အလက်</div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ LOGIN ============ -->
+<div class="page" id="p-login">
+  <div class="langbar"><span class="lb" data-i18n="page.login"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">L1</span><span class="sec-title">Login</span></div>
+    <div class="sec-body"><div class="row" style="justify-content:center"><div class="col" style="max-width:340px">
+      <div class="box small" data-i18n="form.email"></div>
+      <div class="box small" data-i18n="form.pass"></div>
+      <div class="box gold small" data-i18n="nav.login"></div>
+      <div class="row" style="margin-top:6px"><div class="box small col">Google</div><div class="box small col">Facebook</div></div>
+      <div class="box small" style="margin-top:6px" data-i18n="login.forgot"></div>
+    </div></div>
+    <div class="annote"><b>Login စာသားတွေလည်း ဘာသာပြောင်း။</b> Supabase Auth (email/password + OAuth Google/Facebook)။</div></div>
+  </div>
+</div>
+
+<!-- ============ REGISTER ============ -->
+<div class="page" id="p-register">
+  <div class="langbar"><span class="lb" data-i18n="page.register"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">R1</span><span class="sec-title">Register</span></div>
+    <div class="sec-body"><div class="row" style="justify-content:center"><div class="col" style="max-width:340px">
+      <div class="box small" data-i18n="reg.name"></div>
+      <div class="box small" data-i18n="form.email"></div>
+      <div class="box small" data-i18n="form.phone"></div>
+      <div class="box small" data-i18n="form.pass"></div>
+      <div class="box small" data-i18n="reg.course"></div>
+      <div class="box small" data-i18n="form.consent"></div>
+      <div class="box gold small" data-i18n="nav.apply"></div>
+    </div></div></div>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div class="page" id="p-dash">
+  <div class="langbar"><span class="lb" data-i18n="page.dash"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">DB</span><span class="sec-title">Dashboard (protected)</span><span class="sec-tag">login ဝင်မှ</span></div>
+    <div class="sec-body"><div class="sidebar">
+      <div class="side"><div class="box small">ပင်မ</div><div class="box small gold">လျှောက်လွှာ</div><div class="box small">စာရွက်စာတမ်း</div><div class="box small">စာတိုပေးပို့</div><div class="box small">ပရိုဖိုင်</div></div>
+      <div class="main">
+        <div class="box">status card (ဥပမာ "စစ်ဆေးဆဲ")</div>
+        <div class="box small" style="margin-top:6px">next-step checklist</div>
+        <div class="box small" style="margin-top:6px">နောက်ဆုံးသတင်း · unread: 2</div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ APPLICATION ============ -->
+<div class="page" id="p-app">
+  <div class="langbar"><span class="lb" data-i18n="page.app"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">AP</span><span class="sec-title">Application status (real-time)</span></div>
+    <div class="sec-body"><div class="timeline">
+      <div class="dot">လျှောက်လွှာတင် ✓</div>
+      <div class="dot" style="color:var(--gold);font-weight:700">စစ်ဆေးဆဲ… (active)</div>
+      <div class="dot">အင်တာဗျူး</div>
+      <div class="dot">COE</div>
+      <div class="dot">Visa</div>
+      <div class="dot">ခရီးစဉ်</div>
+    </div>
+    <div class="annote">Status ပြောင်းတာနဲ့ <b>real-time notify</b> (Supabase Realtime) — badge/အသံ ပြ။</div></div>
+  </div>
+</div>
+
+<!-- ============ DOCUMENTS ============ -->
+<div class="page" id="p-docs">
+  <div class="langbar"><span class="lb" data-i18n="page.docs"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">DC</span><span class="sec-title">Documents upload</span></div>
+    <div class="sec-body"><div class="row">
+      <div class="box col">နိုင်ငံကူးလက်မှတ် ✓</div>
+      <div class="box col">ပညာအရည်အချင်း ⏳</div>
+      <div class="box col">ဓာတ်ပုံ ⏳</div>
+    </div><div class="box small" style="margin-top:6px">[+ Upload] (Supabase Storage)</div>
+    <div class="annote">Upload → verified badge ပြောင်း (pending/verified/rejected)။</div></div>
+  </div>
+</div>
+
+<!-- ============ MESSAGES ============ -->
+<div class="page" id="p-msg">
+  <div class="langbar"><span class="lb" data-i18n="page.msg"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">MS</span><span class="sec-title">Live chat (Supabase Realtime)</span></div>
+    <div class="sec-body"><div class="chatmock">
+      <div class="msg in">မင်္ဂလာပါ၊ ဘာကူညီပေးရမလဲ?</div>
+      <div class="msg out">Visa status မေးချင်ပါတယ်</div>
+      <div class="msg in">ခဏစောင့်ပါ (typing…)</div>
+    </div>
+    <div class="annote"><b>1:1 chat</b> staff ↔ ကျောင်းသား · typing indicator · unread badge · file attach။</div></div>
+  </div>
+</div>
+
+<!-- ============ PROFILE ============ -->
+<div class="page" id="p-profile">
+  <div class="langbar"><span class="lb" data-i18n="page.profile"></span></div>
+  <div class="sec"><div class="sec-head"><span class="sec-no">PR</span><span class="sec-title">Profile</span></div>
+    <div class="sec-body"><div class="box img" style="max-width:120px">avatar</div>
+    <div class="row" style="margin-top:6px"><div class="box small col" data-i18n="reg.name"></div><div class="box small col" data-i18n="form.email"></div></div>
+    <div class="row"><div class="box small col" data-i18n="form.phone"></div><div class="box small col" data-i18n="profile.lang"></div></div>
+    <div class="box small" style="margin-top:6px" data-i18n="profile.pass"></div></div>
+  </div>
+</div>
+
+</div>
+
+<div class="floating">💬<span class="badge">2</span></div>
+
+<script>
+  // ---- language dictionary (my / ja / en) ----
+  const I18N = {
+    'page.home':   {my:'ပင်မစာမျက်နှာ', ja:'ホーム', en:'Home'},
+    'page.about':  {my:'ကျွန်ုပ်တို့အကြောင်း', ja:'私たちについて', en:'About Us'},
+    'page.services':{my:'ဝန်ဆောင်မှုများ', ja:'事業内容', en:'Our Services'},
+    'page.news':   {my:'သတင်း', ja:'ニュース', en:'News'},
+    'page.newsd':  {my:'သတင်းအသေးစိတ်', ja:'ニュース詳細', en:'News Detail'},
+    'page.gallery':{my:'ဓာတ်ပုံများ', ja:'ギャラリー', en:'Gallery'},
+    'page.contact':{my:'ဆက်သွယ်ရန်', ja:'お問い合わせ', en:'Contact'},
+    'page.login':  {my:'အကောင့်ဝင်ရန်', ja:'ログイン', en:'Login'},
+    'page.register':{my:'အကောင့်ဖွင့်ရန်', ja:'会員登録', en:'Register'},
+    'page.dash':   {my:'ပင်မ Dashboard', ja:'ダッシュボード', en:'Dashboard'},
+    'page.app':    {my:'လျှောက်လွှာ', ja:'申請状況', en:'Application'},
+    'page.docs':   {my:'စာရွက်စာတမ်း', ja:'書類', en:'Documents'},
+    'page.msg':    {my:'စာတိုပေးပို့', ja:'メッセージ', en:'Messages'},
+    'page.profile':{my:'ပရိုဖိုင်', ja:'プロフィール', en:'Profile'},
+
+    'topbar':  {my:'အပေါ်ဆုံး Utility Bar', ja:'トップバー', en:'Top Utility Bar'},
+    'header':  {my:'Header (sticky)', ja:'ヘッダー', en:'Header'},
+    'hero':    {my:'Hero — ခေါင်းစီး', ja:'ヒーロー', en:'Hero'},
+    'nav.lang':{my:'ဘာသာစကား', ja:'言語', en:'Language'},
+    'nav.login':{my:'အကောင့်ဝင်ရန်', ja:'ログイン', en:'Login'},
+    'nav.apply':{my:'လျှောက်ထားရန်', ja:'申し込む', en:'Apply'},
+    'nav.home':   {my:'ပင်မ', ja:'ホーム', en:'Home'},
+    'nav.courses':{my:'သင်တန်းများ', ja:'コース', en:'Courses'},
+    'nav.sending':{my:'ပို့ဆောင်ရေး', ja:'送り出し', en:'Sending'},
+    'nav.news':   {my:'သတင်း', ja:'ニュース', en:'News'},
+    'nav.contact':{my:'ဆက်သွယ်', ja:'お問い合わせ', en:'Contact'},
+
+    'hero.title': {my:'ဂျပန်ကို သွားမယ့် မင်းရဲ့ ခရီး ဒီကနေ စမယ်', ja:'日本へ行く、あなたの旅はここから始まる', en:'Your journey to Japan starts here'},
+    'hero.sub':   {my:'မြန်မာနဲ့ ဂျပန်ရဲ့ အနာဂတ်ကို ပညာရေးနဲ့ ချိတ်ဆက်ပါတယ်', ja:'ミャンマーと日本の未来を、教育でつなぐ。', en:'Connecting Myanmar and Japan through education.'},
+    'hero.cta1':  {my:'လျှောက်ထားရန်', ja:'申し込む', en:'Apply now'},
+    'hero.cta2':  {my:'သင်တန်းကြည့်ရန်', ja:'コースを見る', en:'View courses'},
+
+    'stat.schools':{my:'ကျောင်း', ja:'学校', en:'Schools'},
+    'stat.sent':  {my:'ပို့ဆောင်ပြီး', ja:'送り出し実績', en:'Sent to Japan'},
+    'stat.years': {my:'နှစ်', ja:'年', en:'Years'},
+    'stat.staff': {my:'ဝန်ထမ်း', ja:'スタッフ', en:'Staff'},
+
+    'sec.journey':{my:'သင့်ခရီး (၄ ဆင့်)', ja:'あなたの旅路', en:'Your Journey'},
+    'sec.why':    {my:'ဘာကြောင့် PKT လဲ', ja:'PKTの強み', en:'Why PKT'},
+    'sec.courses':{my:'သင်တန်းများ', ja:'コース', en:'Courses'},
+    'sec.stories':{my:'အောင်မြင်မှုပုံပြင်များ', ja:'卒業生の声', en:'Success Stories'},
+    'sec.news':   {my:'သတင်း', ja:'ニュース', en:'News'},
+    'sec.contact':{my:'ဆက်သွယ်ရန်', ja:'お問い合わせ', en:'Contact'},
+
+    'step.1': {my:'① သင်ယူ', ja:'① 学ぶ', en:'① Learn'},
+    'step.2': {my:'② စာမေးပွဲ', ja:'② 試験', en:'② Exam'},
+    'step.3': {my:'③ ပို့ဆောင်', ja:'③ 送り出し', en:'③ Sending'},
+    'step.4': {my:'④ ဂျပန်ဘဝ', ja:'④ 日本生活', en:'④ Life in Japan'},
+
+    'why.1': {my:'ကိုယ်ပိုင်ကျောင်း 11 ခု', ja:'直営11校', en:'11 own schools'},
+    'why.2': {my:'ပွင့်လင်းသော ကုန်ကျစရိတ်', ja:'透明な費用', en:'Transparent fees'},
+    'why.3': {my:'ဂျပန်တွင် 24/7 ပံ့ပိုး', ja:'日本で24時間サポート', en:'24/7 support in Japan'},
+
+    'course.1': {my:'ဂျပန်စာ (N5→N2)', ja:'日本語 (N5→N2)', en:'Japanese (N5→N2)'},
+    'course.2': {my:'IT အင်ဂျင်နီယာ', ja:'ITエンジニア', en:'IT Engineer'},
+    'course.3': {my:'သီးသန့်ကျွမ်းကျင်', ja:'特定技能', en:'Specified Skills'},
+
+    'news.cat': {my:'လှုပ်ရှားမှု', ja:'活動報告', en:'Activity'},
+    'news.cat2':{my:'အသိပေးချက်', ja:'お知らせ', en:'Notice'},
+    'news.cat3':{my:'ပွဲ', ja:'イベント', en:'Event'},
+
+    'cta.banner':{my:'CTA Banner', ja:'CTAバナー', en:'CTA Banner'},
+    'cta.text':{my:'မင်းရဲ့ အိပ်မက်ကို ဒီနေ့ စတင်လိုက်ပါ', ja:'夢を今日から始めよう', en:'Start your dream today'},
+    'cta.sub': {my:'အခမဲ့ ဆွေးနွေးရန် · လျှောက်ထားရန်', ja:'無料相談・申し込み', en:'Free consultation · Apply'},
+
+    'form.name':  {my:'အမည် *', ja:'氏名 *', en:'Name *'},
+    'form.phone': {my:'ဖုန်း', ja:'電話番号', en:'Phone'},
+    'form.email': {my:'Email *', ja:'メールアドレス *', en:'Email *'},
+    'form.type':  {my:'အမျိုးအစား', ja:'種別', en:'Type'},
+    'form.msg':   {my:'စာသား *', ja:'内容 *', en:'Message *'},
+    'form.consent':{my:'☐ ကိုယ်ရေးမူဝါဒကို သဘောတူပါသည်', ja:'☐ プライバシーポリシーに同意する', en:'☐ I agree to the privacy policy'},
+    'form.pass':  {my:'စကားဝှက်', ja:'パスワード', en:'Password'},
+
+    'login.forgot':{my:'စကားဝှက် မေ့နေပါသလား? · အကောင့်ဖွင့်ရန်', ja:'パスワードをお忘れ? · 新規登録', en:'Forgot password? · Register'},
+
+    'reg.name':   {my:'အမည်', ja:'氏名', en:'Full name'},
+    'reg.course': {my:'လျှောက်ထားမယ့် သင်တန်း', ja:'希望コース', en:'Desired course'},
+
+    'about.hero': {my:'ကျွန်ုပ်တို့အကြောင်း', ja:'私たちについて', en:'About Us'},
+    'about.t1': {my:'ဂျပန်သို့ ပညာသင်သွားသည်', ja:'日本へ留学', en:'Studied in Japan'},
+    'about.t2': {my:'မြန်မာမှာ IT ကုမ္ပဏီ တည်ထောင်', ja:'ミャンマーでIT企業設立', en:'Founded IT company in Myanmar'},
+    'about.t3': {my:'PKT ဂျပန်စာကျောင်း စတင်', ja:'PKT日本語学校 開校', en:'Founded PKT Japanese school'},
+    'about.t4': {my:'ပို့ဆောင်ရေး လုပ်ငန်း စတင်', ja:'送り出し事業開始', en:'Started sending business'},
+    'about.t5': {my:'ဂျပန် ကုမ္ပဏီ တည်ထောင်', ja:'日本法人設立', en:'Established Japan company'},
+    'about.t6': {my:'၁၁ ကျောင်း', ja:'11校に拡大', en:'11 schools'},
+
+    'svc.1': {my:'ပညာရေး', ja:'教育', en:'Education'},
+    'svc.2': {my:'ပို့ဆောင်', ja:'送り出し', en:'Sending'},
+    'svc.3': {my:'ထောက်ပံ့', ja:'支援', en:'Support'},
+
+    'profile.lang': {my:'ဘာသာစကား ဦးစားပေး', ja:'言語設定', en:'Language preference'},
+    'profile.pass': {my:'စကားဝှက် ပြောင်းရန်', ja:'パスワード変更', en:'Change password'},
+  };
+
+  let lang = 'my';
+
+  function applyLang(){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k = el.getAttribute('data-i18n');
+      if (I18N[k] && I18N[k][lang]) el.textContent = I18N[k][lang];
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll('#langSwitch button').forEach(b=>{
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+
+  document.querySelectorAll('#langSwitch button').forEach(b=>{
+    b.addEventListener('click', ()=>{ lang = b.dataset.lang; applyLang(); });
+  });
+
+  // tabs
+  const tabs=document.querySelectorAll('#tabs .ptab');
+  const pages=document.querySelectorAll('.page');
+  tabs.forEach(b=>b.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    pages.forEach(p=>p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('p-'+b.dataset.p).classList.add('active');
+    window.scrollTo({top:0});
+  }));
+
+  applyLang();
+</script>
+</body>
+</html>
