@@ -264,7 +264,7 @@ export function NewsList() {
             width="160"
             height="160"
             patternUnits="userSpaceOnUse"
-            patternTransform="scale(0.58)"
+            patternTransform="scale(0.3)"
           >
             <g
               fill="none"
