@@ -110,35 +110,101 @@ const WHY_ITEMS = [
 export function WhyPkt() {
   const { t } = useI18n();
   return (
-    <Section id="why" tone="cream">
-      <SectionHeading eyebrow="WHY PKT" title={t("why.title")} sub={t("why.sub")} />
-      <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
-        {WHY_ITEMS.map((it, i) => (
-          <Reveal key={it.k} delay={i * 100}>
-            <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={it.img}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                <h3 className="absolute inset-x-5 bottom-4 text-xl font-bold text-white">
-                  {t(`why.${it.k}.t`)}
-                </h3>
-              </div>
-              <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
-                <p className="p-5 text-sm leading-relaxed text-muted">
-                  {t(`why.${it.k}.d`)}
-                </p>
-              </div>
-            </div>
-          </Reveal>
-        ))}
+    <section id="why" className="relative w-full overflow-hidden bg-cream">
+      {/* Japanese spiral-wave watermark background */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="why-wave"
+            width="120"
+            height="120"
+            patternUnits="userSpaceOnUse"
+          >
+            <g
+              fill="none"
+              stroke="#d6ccc3"
+              strokeWidth="1.1"
+              strokeLinecap="round"
+              opacity="0.5"
+            >
+              <g transform="translate(4 12)">
+                <path d="M60 50 C60 40 50 40 50 50 C50 63 67 63 67 50 C67 33 44 33 44 50 C44 72 76 72 76 50 C76 24 36 24 36 50" />
+                <path d="M60 50 C60 44 55 44 55 50 C55 58 65 58 65 50" />
+              </g>
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#why-wave)" />
+      </svg>
+
+      {/* top wave border (blends from previous white section) */}
+      <div className="pointer-events-none absolute inset-x-0 top-0">
+        <svg
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="h-8 w-full sm:h-12"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,0 L1440,0 L1440,32 C1200,64 960,0 720,32 C480,64 240,0 0,32 Z"
+            fill="#ffffff"
+          />
+        </svg>
       </div>
-    </Section>
+
+      {/* content */}
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="WHY PKT"
+          title={t("why.title")}
+          sub={t("why.sub")}
+        />
+        <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
+          {WHY_ITEMS.map((it, i) => (
+            <Reveal key={it.k} delay={i * 100}>
+              <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={it.img}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <h3 className="absolute inset-x-5 bottom-4 text-xl font-bold text-white">
+                    {t(`why.${it.k}.t`)}
+                  </h3>
+                </div>
+                <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
+                  <p className="p-5 text-sm leading-relaxed text-muted">
+                    {t(`why.${it.k}.d`)}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      {/* bottom wave border (blends into next white section) */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0">
+        <svg
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="h-8 w-full sm:h-12"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,60 L1440,60 L1440,28 C1200,-4 960,60 720,28 C480,-4 240,60 0,28 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
+    </section>
   );
 }
 
