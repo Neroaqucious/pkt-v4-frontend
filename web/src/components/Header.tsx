@@ -12,7 +12,6 @@ const NAV = [
   { key: "courses", href: "/courses" },
   { key: "services", href: "/services" },
   { key: "news", href: "/news" },
-  { key: "gallery", href: "/gallery" },
   { key: "contact", href: "/contact" },
 ] as const;
 
