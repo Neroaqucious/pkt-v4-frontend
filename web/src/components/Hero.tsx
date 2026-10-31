@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import StatCounter from "./StatCounter";
@@ -18,10 +19,7 @@ function Stat({
   delay: number;
 }) {
   return (
-    <div
-      className="animate-fade-up"
-      style={{ animationDelay: `${delay}ms` }}
-    >
+    <div className="animate-fade-up" style={{ animationDelay: `${delay}ms` }}>
       <div className="text-2xl font-extrabold text-ink sm:text-3xl">
         <StatCounter value={value} suffix={suffix} />
       </div>
@@ -30,8 +28,25 @@ function Stat({
   );
 }
 
+const HERO_IMAGES = [
+  IMG.fuji,
+  IMG.students,
+  IMG.torii,
+  IMG.studyLaptop,
+  IMG.inari,
+];
+
 export default function Hero() {
   const { t } = useI18n();
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(
+      () => setIdx((i) => (i + 1) % HERO_IMAGES.length),
+      4000,
+    );
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="relative w-full overflow-hidden bg-cream">
@@ -91,24 +106,44 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — image collage */}
+        {/* Right — auto carousel */}
         <div className="relative">
           <Fuji className="pointer-events-none absolute -bottom-2 right-0 w-64 text-ink opacity-[0.06]" />
-          <div className="relative grid grid-cols-2 gap-3">
-            <div className="relative h-40 overflow-hidden rounded-2xl sm:h-48">
-              <Image src={IMG.fuji} alt="" fill sizes="50vw" className="object-cover" />
-            </div>
-            <div className="relative mt-6 h-40 overflow-hidden rounded-2xl sm:h-48">
-              <Image src={IMG.students} alt="" fill sizes="50vw" className="object-cover" />
-            </div>
-            <div className="relative h-40 overflow-hidden rounded-2xl sm:h-48">
-              <Image src={IMG.torii} alt="" fill sizes="50vw" className="object-cover" />
-            </div>
-            <div className="relative -mt-6 h-40 overflow-hidden rounded-2xl sm:h-48">
-              <Image src={IMG.studyLaptop} alt="" fill sizes="50vw" className="object-cover" />
+
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg lg:aspect-square">
+            {HERO_IMAGES.map((src, i) => (
+              <Image
+                key={src}
+                src={src}
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className={`object-cover transition-opacity duration-1000 ${
+                  i === idx ? "opacity-100" : "opacity-0"
+                }`}
+                priority={i === 0}
+              />
+            ))}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+
+            {/* dots */}
+            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+              {HERO_IMAGES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIdx(i)}
+                  aria-label={`Slide ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === idx
+                      ? "w-6 bg-white"
+                      : "w-2 bg-white/60 hover:bg-white"
+                  }`}
+                />
+              ))}
             </div>
           </div>
-          <div className="absolute -left-2 bottom-8 flex items-center gap-2 rounded-xl bg-white px-4 py-3 shadow-lg sm:-left-6">
+
+          <div className="absolute -bottom-5 -left-4 flex items-center gap-2 rounded-xl bg-white px-4 py-3 shadow-lg sm:-left-6">
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">
               ✓
             </span>

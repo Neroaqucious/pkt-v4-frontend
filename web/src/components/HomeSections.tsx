@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import Section from "./Section";
@@ -35,99 +35,89 @@ function SectionHeading({
 
 /* ---------------- Journey ---------------- */
 const JOURNEY_STEPS = [
-  { icon: "🎓", k: 1 },
-  { icon: "📝", k: 2 },
-  { icon: "✈️", k: 3 },
-  { icon: "🏠", k: 4 },
+  { img: IMG.education, k: 1 },
+  { img: IMG.students, k: 2 },
+  { img: IMG.travel, k: 3 },
+  { img: IMG.studyLaptop, k: 4 },
 ];
 
 export function Journey() {
   const { t } = useI18n();
-  const lineRef = useRef<HTMLDivElement>(null);
-  const [lineOn, setLineOn] = useState(false);
-
-  useEffect(() => {
-    const el = lineRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setLineOn(true);
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.3 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <Section id="journey" tone="white">
       <SectionHeading title={t("journey.title")} sub={t("journey.sub")} />
-
-      <div className="relative mt-16">
-        {/* connecting line (desktop) — draws on scroll */}
-        <div className="absolute left-[12.5%] right-[12.5%] top-8 hidden lg:block">
-          <div
-            ref={lineRef}
-            className={`h-0.5 origin-left bg-gradient-to-r from-gold via-brand to-brand transition-transform duration-1000 ease-out ${
-              lineOn ? "scale-x-100" : "scale-x-0"
-            }`}
-          />
-        </div>
-
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {JOURNEY_STEPS.map((s, i) => (
-            <Reveal key={s.k} delay={i * 120}>
-              <div className="group relative flex flex-col items-center text-center">
-                <div className="relative">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-white text-2xl shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-brand group-hover:shadow-lg group-hover:shadow-brand/10">
-                    {s.icon}
-                  </div>
-                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white shadow">
-                    {s.k}
-                  </span>
-                </div>
-                <h3 className="mt-5 text-lg font-bold text-ink">
+      <div className="mt-12 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {JOURNEY_STEPS.map((s, i) => (
+          <Reveal key={s.k} delay={i * 100}>
+            <div className="group overflow-hidden rounded-2xl bg-white ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={s.img}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <span className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-brand text-sm font-bold text-white shadow">
+                  {String(s.k).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="flex items-center justify-between gap-2 p-4">
+                <h3 className="text-base font-bold text-ink">
                   {t(`journey.${s.k}.t`)}
                 </h3>
-                <p className="mt-2 max-w-[240px] text-sm leading-relaxed text-muted">
+                <span className="hidden text-lg leading-none text-brand transition-transform duration-300 group-hover:rotate-45 md:block">
+                  ＋
+                </span>
+              </div>
+              <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
+                <p className="px-4 pb-4 text-sm leading-relaxed text-muted">
                   {t(`journey.${s.k}.d`)}
                 </p>
               </div>
-            </Reveal>
-          ))}
-        </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </Section>
   );
 }
 
 /* ---------------- Why PKT ---------------- */
+const WHY_ITEMS = [
+  { img: IMG.torii, k: 1 },
+  { img: IMG.consultation, k: 2 },
+  { img: IMG.fuji, k: 3 },
+];
+
 export function WhyPkt() {
   const { t } = useI18n();
-  const items = [
-    { icon: "🎓", k: 1 },
-    { icon: "💰", k: 2 },
-    { icon: "🤝", k: 3 },
-  ];
   return (
     <Section id="why" tone="cream">
       <SectionHeading title={t("why.title")} sub={t("why.sub")} />
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {items.map((it, i) => (
-          <Reveal key={it.k} delay={i * 90}>
-            <div className="h-full rounded-2xl bg-white p-6 shadow-sm">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-tint text-2xl">
-                {it.icon}
-              </span>
-              <h3 className="mt-4 text-lg font-bold text-ink">
-                {t(`why.${it.k}.t`)}
-              </h3>
-              <p className="mt-2 text-sm text-muted">{t(`why.${it.k}.d`)}</p>
+      <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
+        {WHY_ITEMS.map((it, i) => (
+          <Reveal key={it.k} delay={i * 100}>
+            <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line transition-shadow duration-300 hover:shadow-xl">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={it.img}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <h3 className="absolute inset-x-5 bottom-4 text-xl font-bold text-white">
+                  {t(`why.${it.k}.t`)}
+                </h3>
+              </div>
+              <div className="md:max-h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-40 md:group-hover:opacity-100">
+                <p className="p-5 text-sm leading-relaxed text-muted">
+                  {t(`why.${it.k}.d`)}
+                </p>
+              </div>
             </div>
           </Reveal>
         ))}
