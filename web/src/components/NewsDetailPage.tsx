@@ -2,15 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { useI18n } from "@/lib/i18n/LanguageProvider";
 import Section from "./Section";
 import { news, newsCategoryLabel } from "@/lib/news";
 
-export default function NewsDetailPage() {
+export default function NewsDetailPage({ slug }: { slug: string }) {
   const { t, lang } = useI18n();
-  const params = useParams<{ slug: string }>();
-  const item = news.find((n) => n.slug === params.slug);
+  const item = news.find((n) => n.slug === slug);
 
   if (!item) {
     return (
